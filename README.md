@@ -1,6 +1,8 @@
 ## Welcome to the Manual for the LabBench Software
+This repository contains the manual for the LabBench Software for conducting experiments within neuroscience and psychophysics.
 
-[LICENSE](LICENSE.md)
+The manual is hosted on Github pages from the /docs directory [LINK](https://inventors-way.github.io/LabBench.Manual/)
+
 
 You can use the [editor on GitHub](https://github.com/Inventors-Way/LabBench.Manual/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
 
