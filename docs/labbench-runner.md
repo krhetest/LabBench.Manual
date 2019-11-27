@@ -18,7 +18,7 @@ The list above provides a high level overview of how experimental sessions are p
 
 ## Starting an experimental session
 
-![Startup-Wizard Step 1][step01]
+![Startup-Wizard Step 1][step01#center]
 
 
 [step01]: img/wizard-step01.png "Start-Up Step 1"
