@@ -1,5 +1,10 @@
-# Overview
+# Running experiments
 
-LabBench Runner is used for running experimental sessions according to a predefined protocol, with a simple user interface that contains only the functionality and information that is required to run the session.
+Running experiments are performed with the LabBench Runner program according to predefined protocols and experimental setups, with a simple user interface that contains only the functionality and information that is required to run a specific protocol.
 
-The program achives that by being designed to run only experimental sessions, and delegating the work and setup required to write protocols, setup experiments, and exporting and analysing data to other sub-programs within the LabBench system.
+Running an experimental session with LabBench Runner consists of the following steps:
+
+* Going through the start-up wizard dialog, where you will:
+** Select the experiment you want to perform
+** Check that all the required instuments are present and correctly configured.
+** Create a new subject, or choose an existing subject.
