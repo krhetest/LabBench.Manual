@@ -17,3 +17,8 @@ Running an experimental session with LabBench Runner consists of the following s
 The list above provides a high level overview of how experimental sessions are performed with the LabBench Runner program, the remaining of this guide will explain in detail how each of these steps are performed.
 
 ## Starting an experimental session
+
+![Startup-Wizard Step 1][step01]
+
+
+[step01]: img/wizard-step01.png "Start-Up Step 1"
