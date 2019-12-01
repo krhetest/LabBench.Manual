@@ -3,14 +3,14 @@
 
 1. [Overview](#overview)
 2. [Installing and updating](#installing-and-updating)
-3. Adding research instruments
-4. Setting up an experiment
-5. Running experiments
-6. Exporting data
-7. Data analysis
-   1. Matlab
-   2. Excel
-8. Writing protocols
+3. [Adding research instruments](#adding-research-instruments)
+4. [Setting up an experiment](#setting-up-an-experiment)
+5. [Running experiments](#running-experiments)
+6. [Exporting data](#exporting-data)
+7. [Data analysis](#data-analysis)
+   1. [Matlab](#matlab)
+   2. [Excel](#excel)
+8. [Writing protocols](#writing-protocols)
 
 # Overview
 
