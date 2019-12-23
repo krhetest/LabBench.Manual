@@ -31,3 +31,10 @@
 ## Excel
 
 # Writing protocols
+
+## Tests
+
+* Psychophysics
+  * [Method Of Limits](method_of_limits.html)
+  * Psi Method
+  
