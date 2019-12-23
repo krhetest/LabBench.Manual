@@ -34,7 +34,10 @@
 
 ## Tests
 
+* Metatests
+  * [Subject information](subject_information.html)
+  * [Subject factors](factors.html)
 * Psychophysics
-  * [Method Of Limits](method_of_limits.html)
-  * Psi Method
+  * [Multiple perception thresholds](method_of_limits.html)
+  * [Psi method](psi_method.html)
   
