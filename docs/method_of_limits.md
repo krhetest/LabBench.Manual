@@ -23,7 +23,7 @@ Each Up/Down estimate for a stimulus channel consists of increasing the
 
 ## Test definition
 
-´´´xml
+```xml
 <multiple-perception-thresholds ID="T1" 
                                 name="Multiple Perception Test"    response-algorithm="click-and-release">
     <update-rate-deterministic value="2000" />
@@ -61,7 +61,7 @@ Each Up/Down estimate for a stimulus channel consists of increasing the
         </combined>
     </channel>
 </multiple-perception-thresholds>
-´´´
+```
 
 ## Test result
 
