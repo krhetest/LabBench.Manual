@@ -59,6 +59,8 @@ In the xml snippet below it is illustrated how these instruments can be defined 
 
 The example above uses a LabBenchIO device to provide the two instruments Button (interface: IButton) and Stimulator (interface: IAnalogStimulator) for all the multiple perception thresholds tests in the protocol used by the experiment. In this example it can be seen from the devices element that the actual stimulator used in the experiment is a Digitimer DS5 that is set up to a default transconductance of 1mA/1V (i.e. 10mA maximal stimulation intensity).
 
+[Back to index](index.html)
+
 ## Test definition
 
 The test definition for the test used to illustrate the test method is provided in the xml code snippet below:
@@ -121,7 +123,34 @@ This test definition uses defines, which is intended as a means for being able t
 </defines>
 ```
 
-The table below provides a description for each parameter.
+The test definition consists of the following elements:
+
+* multiple-perception-thresholds: *The root element for the Multiple Perception Test
+  * [Defining the update rate]: *Defines the update rate for the test, is either a ```<update-rate-random>``` or ```<update-rate-deterministic>``` element*
+  * dependencies: *which other tests in the protocol that the test depends on*
+  * channels: the stimulus channels that are defined for the test
+
+In the following each element of the test definition will be explained together with their parameters.
+
+### Element ```<multiple-perception-thresholds>```
+
+The ```<multiple-perception-thresholds>``` element identifies and defines a Multiple Perception Thresholds test in a protocol. 
+
+| Parameter        | Type     | Usage     |
+|------------------|----------|-----------|
+|response-algorithm|Enum      |Determines how the subject indicates that he or she can feel the stimulus. It can take to values "click-and-hold" or "click-and-release". If it is set to "click-and-release" the subject should press and then release the button each time a stimulus is felt. If it is set to "click-and-hold" the subject should press and hold the button as long as he or she can feel the stimuli.|
+
+### Defining the update rate
+
+### dependencies
+
+### channels
+
+### channel
+
+### channel-dependencies
+
+### stimulus definition
 
 | Element                      | Parameter        | Type     | Usage     |
 |------------------------------|------------------|----------|-----------|
