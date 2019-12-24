@@ -25,7 +25,8 @@ Each Up/Down estimate for a stimulus channel consists of increasing the
 
 ```xml
 <multiple-perception-thresholds ID="T1" 
-                                name="Multiple Perception Test"    response-algorithm="click-and-release">
+                                name="Multiple Perception Test"
+                                response-algorithm="click-and-release">
     <update-rate-deterministic value="2000" />
     <dependencies />
     <channel ID="C01"
