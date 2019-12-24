@@ -23,6 +23,46 @@ Each Up/Down estimate for a stimulus channel consists of increasing the
 
 ## Test definition
 
+´´´xml
+<multiple-perception-thresholds ID="T1" 
+                                name="Multiple Perception Test"    response-algorithm="click-and-release">
+    <update-rate-deterministic value="2000" />
+    <dependencies />
+    <channel ID="C01"
+             channel-type="contineous"
+             name="Rect"
+             Istart="Istart"
+             Naverage="Naverage"
+             Ndiscard="Ndiscard"
+             Ntest="Ntest"
+             Pdecrease="Pdecrease"
+             Pmin="Pmin"
+             Pstep="Pstep">
+        <channel-dependencies />
+        <pulse Is="Is" Ts="Ts" Tdelay="0"/>
+    </channel>
+
+    <channel ID="C02"
+             channel-type="single-sample"
+             name="TE"
+             Istart="Istart"
+             Naverage="Naverage"
+             Ndiscard="Ndiscard"
+             Ntest="Ntest"
+             Pdecrease="Pdecrease"
+             Pmin="Pmin"
+             Pstep="Pstep">
+        <channel-dependencies>
+            <dependency ID="C01"/>
+        </channel-dependencies>
+        <combined>
+            <pulse Is="0.1*C['C01']" Ts="20 + Ts" Tdelay="0"/>
+            <pulse Is="Is" Ts="Ts" Tdelay="20"/>
+        </combined>
+    </channel>
+</multiple-perception-thresholds>
+´´´
+
 ## Test result
 
 ## Data export
