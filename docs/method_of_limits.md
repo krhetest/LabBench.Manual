@@ -121,13 +121,30 @@ This test definition uses defines, which is intended as a means for being able t
 </defines>
 ```
 
-The table below provides a description for each parameter:
+The table below provides a description for each parameter.
 
-| Element                      | Parameter        | Type | Usage     |
-|------------------------------|------------------|------|-----------|
-|multiple-perception-thresholds|ID                |String|The ID that is used to reference the test within the protocol.|
-|                              |name              |String|A human readable name that is used in the protocol view of the LabBench Runner.|
-|                              |response-algorithm|Enum  ||
+| Element                      | Parameter        | Type     | Usage     |
+|------------------------------|------------------|----------|-----------|
+|multiple-perception-thresholds|response-algorithm|Enum      |Determines how the subject indicates that he or she can feel the stimulus. It can take to values "click-and-hold" or "click-and-release". If it is set to "click-and-release" the subject should press and then release the button each time a stimulus is felt. If it is set to "click-and-hold" the subject should press and hold the button as long as he or she can feel the stimuli.|
+|channels                      |*None*            |N/A       ||
+|channel                       |ID                |Text      ||
+|                              |channel-type      |Enum      ||
+|                              |name              |Text      ||
+|                              |Istart            |Calculated||
+|                              |Naverage          |Calculated||
+|                              |Ndiscard          |Calculated||
+|                              |Ntest             |Calculated||
+|                              |Pdecrease         |Calculated||
+|                              |Pmin              |Calculated||
+|                              |Pstep             |Calculated||
+|channel-dependencies          |*None*            |N/A       ||
+|dependency                    |ID                |Text      ||
+|combined                      |*None*            |N/A       ||
+|pulse/ramp                    |Is                |Calculated||
+|                              |Ts                |Calculated||
+|                              |Tdelay            |Calculated||
+
+Please note that the table only describes the parameters that are specific to the Multiple Perception Test and not those parameters that are common to all LabBench tests, such as the ID and Name parameters, or the <update-rate-deterministic>/<update-rate-random> elements.
 
 ## Test result
 
