@@ -127,58 +127,67 @@ The test definition consists of the following elements:
 
 * multiple-perception-thresholds: *The root element for the Multiple Perception Test
   * [Defining the update rate]: *Defines the update rate for the test, is either a ```<update-rate-random>``` or ```<update-rate-deterministic>``` element*
-  * dependencies: *which other tests in the protocol that the test depends on*
+  * [Definition of dependencies]: *which other tests in the protocol that the test depends on*
   * channels: the stimulus channels that are defined for the test
 
 In the following each element of the test definition will be explained together with their parameters.
 
 ### Element ```<multiple-perception-thresholds>```
 
-The ```<multiple-perception-thresholds>``` element identifies and defines a Multiple Perception Thresholds test in a protocol. 
+The ```<multiple-perception-thresholds>``` element identifies and defines a Multiple Perception Thresholds test in a protocol definition file.
 
 | Parameter        | Type     | Usage     |
 |------------------|----------|-----------|
 |response-algorithm|Enum      |Determines how the subject indicates that he or she can feel the stimulus. It can take to values "click-and-hold" or "click-and-release". If it is set to "click-and-release" the subject should press and then release the button each time a stimulus is felt. If it is set to "click-and-hold" the subject should press and hold the button as long as he or she can feel the stimuli.|
 
-### Defining the update rate
+### Element: Defining the update rate
 
-### dependencies
+Definition of an update rate with either:
 
-### channels
+* ```<update-rate-random>``` or
+* ```<update-rate-deterministic>```
 
-### channel
+element is common to all LabBench tests, and is always the first element in a test definition.
 
-### channel-dependencies
+Please refer to [To Be Written](to-be-written) for a description of how to define the update rate for a test.
 
-### stimulus definition
+### Element: Definition of dependencies
 
-| Element                      | Parameter        | Type     | Usage     |
-|------------------------------|------------------|----------|-----------|
-|multiple-perception-thresholds|response-algorithm|Enum      |Determines how the subject indicates that he or she can feel the stimulus. It can take to values "click-and-hold" or "click-and-release". If it is set to "click-and-release" the subject should press and then release the button each time a stimulus is felt. If it is set to "click-and-hold" the subject should press and hold the button as long as he or she can feel the stimuli.|
-|channels                      |*None*            |N/A       ||
-|channel                       |ID                |Text      ||
-|                              |channel-type      |Enum      ||
-|                              |name              |Text      ||
-|                              |Istart            |Calculated||
-|                              |Naverage          |Calculated||
-|                              |Ndiscard          |Calculated||
-|                              |Ntest             |Calculated||
-|                              |Pdecrease         |Calculated||
-|                              |Pmin              |Calculated||
-|                              |Pstep             |Calculated||
-|channel-dependencies          |*None*            |N/A       ||
-|dependency                    |ID                |Text      ||
-|combined                      |*None*            |N/A       ||
-|pulse/ramp                    |Is                |Calculated||
-|                              |Ts                |Calculated||
-|                              |Tdelay            |Calculated||
+Definition of test dependencies with ```<dependency>``` is common to all LabBench tests, and is always the second element in a test definition.
 
-Please note that the table only describes the parameters that are specific to the Multiple Perception Test and not those parameters that are common to all LabBench tests, such as the ID and Name parameters, or the <update-rate-deterministic>/<update-rate-random> elements.
+Please refer to [To Be Written](to-be-written) for a description of how to define test dependencies.
+
+### Element: ```<channels>```
+
+### Element: ```<channel>```
+
+| Parameter        | Type     | Usage     |
+|------------------|----------|-----------|
+|ID                |Text      ||
+|channel-type      |Enum      ||
+|name              |Text      ||
+|Istart            |Calculated||
+|Naverage          |Calculated||
+|Ndiscard          |Calculated||
+|Ntest             |Calculated||
+|Pdecrease         |Calculated||
+|Pmin              |Calculated||
+|Pstep             |Calculated||
+
+### Element: ```<channel-dependencies>```
+
+| Parameter        | Type     | Usage     |
+|------------------|----------|-----------|
+|ID                |Text      ||
+
+### Element: Stimulus definition
 
 ## Test result
 
 ## Data export
 
 ### Matlab
+
+TODO: *To Be Written*
 
 [mol]: img/MethodOfLimits.png "Method Of Limits"
