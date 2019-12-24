@@ -15,11 +15,47 @@ The process of estimating the threshold is illustrated in Figure 1 (the  figure 
 Each estimation of the threshold for a stimulus is denoted as a stimulus channel, which has a seperate set of configuration parameters. In the illustration above two stimulus channels are defined; the first stimulus channel (C01) estimates the threshold to a retangular stimulus, and the second stimulus channel (C02) estimates the threshold to a rectangular stimulus that is conditioned by a long sub-threshold rectangular stimulus set to 10% of the threshold of the first stimulus channel (C01). As stimulus channel (C02) depends on stimulus channel (C01) it cannot run before there is a valid estimate for the threshold for
 the stimulus in stimulus channel (C01). In Figure 1, this is the reason that stimulus channel (C01) is run for four times before the test starts to alternate between stimulus channels (C01) and (C02), as the test in Figure 1 is configured to discard the first up/down estimate and to first provide a valid estimate when there are three up/down estimates available.
 
-Each Up/Down estimate for a stimulus channel consists of increasing the 
+Each Up/Down estimate for the stimulus channels in Figure 1 consists of increasing the intensity with a step size proportional to the current intensity until the subject has been able to feel the stimulation for three consequtive stimuli. When the subject has been able to feel the stimuli for three consequetive stimuli then the intensity is decreased with a step size proportional to the current intensity until the subject can no longer feel the stimuli for three consequtive stimuli.
+
+After each Up/Down estimate the intensity step size is decreased with a percentage until a minimum step size is reached. When the threshold is estimated it is determined as a weighted average of the Up/Down estimates, where the wieght is inverse proportional to the step size used in the Up/Down estimates.
+
+Please note that all the values given in the example description above are not fixed but is defined in the test configuration for the multiple perception test in the protocol definition file (*.prtx). The parameters and their valid values are described in section [Test definition](#Test-definition)
 
 [Back to index](index.html)
 
 ## Required instruments
+
+The Multiple Perception test needs the following instruments to be defined in the expriment definition file (*.expx) for the experiment:
+
+| ID |  Interface | Usage |
+|----|------------|-------|
+|Button|IButton|Is used for the subject to indicate whether he or she can feel the stimulation|
+|Stimulator|IAnalogStimulator|Is used for delivering the stimuli to subject|
+
+In the xml snippet below it is illustrated how these instruments can be defined in experiment definition file (*.expx) for all Multiple Perception Thresholds tests in a protocol:
+
+```xml
+<experimental-setup>
+    <description>
+    The multiple perception test requires a device that implements the IAnalogStimulator and IButton interfaces.
+    </description>
+    <devices>
+        <device id="dev" type="labench-io" serial-number="2">
+            <attached-equipment>
+                <ds5 name="Stimulator" transconductance="1mA_1V" />
+            </attached-equipment>
+        </device>
+    </devices>
+    <device-mapping>
+      <device-assignment test-type="psychophysics-multiple-perception-thresholds"
+                         instrument-name="Button"
+                         device-id="dev" />
+      <device-assignment test-type="psychophysics-multiple-perception-thresholds"
+                         instrument-name="Stimulator"
+                         device-id="dev" />
+    </device-mapping>
+</experimental-setup>
+```
 
 ## Test definition
 
