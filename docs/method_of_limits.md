@@ -27,7 +27,7 @@ Please note that all the values given in the example description above are not f
 
 The Multiple Perception test needs the following instruments to be defined in the expriment definition file (*.expx) for the experiment:
 
-| ID |  Interface | Usage |
+| Name |  Interface | Usage |
 |----|------------|-------|
 |Button|IButton|Is used for the subject to indicate whether he or she can feel the stimulation|
 |Stimulator|IAnalogStimulator|Is used for delivering the stimuli to subject|
@@ -57,7 +57,11 @@ In the xml snippet below it is illustrated how these instruments can be defined 
 </experimental-setup>
 ```
 
+The example above uses a LabBenchIO device to provide the two instruments Button (interface: IButton) and Stimulator (interface: IAnalogStimulator) for all the multiple perception thresholds tests in the protocol used by the experiment. In this example it can be seen from the devices element that the actual stimulator used in the experiment is a Digitimer DS5 that is set up to a default transconductance of 1mA/1V (i.e. 10mA maximal stimulation intensity).
+
 ## Test definition
+
+The test definition for the test used to illustrate the test method is provided in the xml code snippet below:
 
 ```xml
 <multiple-perception-thresholds ID="T1" 
@@ -99,6 +103,31 @@ In the xml snippet below it is illustrated how these instruments can be defined 
     </channel>
 </multiple-perception-thresholds>
 ```
+
+This test definition uses defines, which is intended as a means for being able to set multiple parameters in a protocol to the same value. The test definition above uses the following defines:
+
+```xml
+<defines>
+    <!-- Stimuli -->
+    <define name="Ts" value="1"/>    
+    <!-- Multiple Perception Test -->
+    <define name="Istart" value="0.2"/>
+    <define name="Naverage" value="3"/>
+    <define name="Ndiscard" value="1"/>
+    <define name="Ntest" value="2"/>
+    <define name="Pdecrease" value="0.2"/>
+    <define name="Pmin" value="0.05"/>
+    <define name="Pstep" value="0.2"/>
+</defines>
+```
+
+The table below provides a description for each parameter:
+
+| Element                      | Parameter        | Type | Usage     |
+|------------------------------|------------------|------|-----------|
+|multiple-perception-thresholds|ID                |String|The ID that is used to reference the test within the protocol.|
+|                              |name              |String|A human readable name that is used in the protocol view of the LabBench Runner.|
+|                              |response-algorithm|Enum  ||
 
 ## Test result
 
