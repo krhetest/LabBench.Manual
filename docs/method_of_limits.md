@@ -159,30 +159,63 @@ Please refer to [To Be Written](to-be-written) for a description of how to defin
 
 ### Element: ```<channels>```
 
+The third element of the test definition contains the stimulus channels that are defined for the test. This element has no parameters and contains a sequency of channel definitions.
+
+Each channel is defined with a ```<channel>``` element.
+
 ### Element: ```<channel>```
+
+Each channel is defined with a ```<channel>``` element, which contains the following sub-elements:
+
+* ```<channel-dependencies>```: *which channels the channel depends on*
+* [Stimulus definition]: *the stimulus for which to estimate the threshold*
+
+The channel has the following parameters:
 
 | Parameter        | Type     | Usage     |
 |------------------|----------|-----------|
-|ID                |Text      ||
-|channel-type      |Enum      ||
-|name              |Text      ||
-|Istart            |Calculated||
-|Naverage          |Calculated||
-|Ndiscard          |Calculated||
-|Ntest             |Calculated||
-|Pdecrease         |Calculated||
-|Pmin              |Calculated||
-|Pstep             |Calculated||
+|ID                |Text      |The ID of the channel that are used to identify it from other channels, either as a dependency or to extract its threshold for a calculated parameter in another channel's Stimulus definition.|
+|channel-type      |Enum      |The type of channel which can be either "contineous" or "single-sample". If it is a "single-sample" channel then it will stop being run when there is a valid estimate for its stimulus. If the channel is "contineous" the channel will contienue to be run until all "single-sample" channels has completed. Please note that if all channels are "contineous" then this will be an error as the test will never be completed. |
+|name              |Text      |A human readable name for the stimulus channel|
+|Istart            |Calculated|The initial intensity for the stimulus in the first Up/Down estimate.|
+|Naverage          |Calculated|How many Up/Down estimates to be available before there is valid estimate for the threshold.|
+|Ndiscard          |Calculated|How many Up/Down estimates to initially discard.|
+|Ntest             |Calculated|How many responses to test before the subject is considered to be able either feel or not feel the stimuli in the Up/Down estimation|
+|Pdecrease         |Calculated|The decrease in step size for each Up/Down estimate. Consequently, the next step size Pstep,n+1 is calculated as Pstep,n+1 = (1-Pdecreae)*Pstep,n. |
+|Pmin              |Calculated|The minimum step size. If the Pdecrease results in a step size below Pmin then Pmin will be used instead.|
+|Pstep             |Calculated|The intial percentwise step size for the intensity.  |
 
 ### Element: ```<channel-dependencies>```
 
+Dependencies to other stimulus channels are defined with ```<depency>``` elements with in the ```<channel-dependencies>``` element. Each ```<dpency>``` element has the following paraneters:
+
 | Parameter        | Type     | Usage     |
 |------------------|----------|-----------|
-|ID                |Text      ||
+|ID                |Text      |The ID of the channel that the current channel depends on. Consequently, the current channel cannot run before there is a valid threshold estimate the channel identified by this ID parameter. |
 
 ### Element: Stimulus definition
 
+Definition of stimuli is common for all tests that use the IAnalogStimulator interface.
+
+Please refer to [To Be Written](to-be-written) for a description of how to define stimuli.
+
 ## Test result
+
+The threshold estimates from a Multiple Perception Thresholds test can be used in the stimuli in the stimulus channels of the test, or in calculated parameters and stimuli of other tests.
+
+When used in its own stimuli for its stimulus channels, a threshold estimate is obtained with the following syntax:
+
+```python
+C['ID of Stimulus Channel']
+```
+
+When used in calculated parameters of other tests or their stimuli, a threshold estimate is obtained with the following syntax:
+
+```python
+TEST_ID['ID of Stimulus Channel']
+```
+
+where TEST_ID is substituted with the actual test id for tests, which in the example above would be T1.
 
 ## Data export
 
