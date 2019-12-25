@@ -27,7 +27,7 @@ LabBench is a software system for running neuroscience experiments on human subj
 
 Consequently, LabBench is an attempt to solve a paradox that riddles software that are used in scientific studies. Software for scientific studies needs to be adaptable and flexible as the anoying thing about scientists is that they always want to do something novel, and at the same time experiments needs to be conducted in a very inflexible and displined way to ensure that all results are comparable and that the experiment can be reproduced.
 
-The classical approach to this is to cram as many functions and the possibility perhaps to write scripts into the user interface. 
+The classical approach to this is to cram as many functions and the possibility perhaps to write scripts into the user interface. This certaintly maximizes the adaptability and flexibility of the software, however, it also maximizes the complexity of the user interface and maximizes the possibility of mistakes during an experiment. With the classical approach, the experience and displine of the scientist running the experiment is the only thing that ensures that the experiment is run in a consistent and reproducible manner.
 
 ## Protocols
 
