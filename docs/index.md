@@ -4,6 +4,9 @@
 1. [Overview](#overview)
    1. [Protocols](#protocols)
    2. [Experiments](#experiments)
+   3. [Instruments](#instruments)
+   4. [Logging](#logging)
+   5. [Data collection](#data-collection)
 2. [Installing and updating](#installing-and-updating)
 3. [Adding research instruments](#adding-research-instruments)
 4. [Setting up an experiment](#setting-up-an-experiment)
@@ -37,6 +40,8 @@ Consequently, running an experiment with LabBench consists of the following step
 2. Using LabBench to execute this protocol in a series of sessions in the experiment.
 3. Exporting, analysing and publishing the data obtained in the experiment.
 
+This overview if intended to introduce you to the philosophy of how LabBench works and its central concepts. The following sections will introduce you to these central concepts, but will explain how they are implemented in LabBench. For a detailed explanation of how to use these concepts, please refer to later sections in this manual.
+
 ## Protocols
 
 To run an experiment with LabBench you will need to write a protocol in the form of a text file termed a protocol definition file (*.prtx). This file contains a list of all the experimental procedures in the experiment, which in LabBench is referred to as tests.
@@ -46,7 +51,15 @@ When executed in an experiment each test will produce a result that is automatic
 1. A [Multiple perception thresholds](method_of_limits.html) test that estimates the pain threshold.
 2. A [Evoked responses](evoked_responses.html) test that uses the threshold determined by the first test to set the intensity of the stimuli used to evoke a response to a predefined percentage of the pain threshold.
 
+However, this dependency is not hardcoded in the Evoked responses test. The intensity could come from any test from which an intensity can be calculated. The intensity may also be set from a [Stimulus-response](stimulus_response.html) test, as the intensity that evokes a predefined psychophysical response on a visual analog scale (VAS). In the above example this VAS scale may for example be defined with the anchor points of 0cm) no sensation, 4cm) pain threshold, 10cm) pain tolerance threshold.
+
+## Instruments
+
 ## Experiments
+
+## Logging
+
+## Data collection
 
 # Installing and updating
 
