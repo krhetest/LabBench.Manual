@@ -39,6 +39,13 @@ Consequently, running an experiment with LabBench consists of the following step
 
 ## Protocols
 
+To run an experiment with LabBench you will need to write a protocol in the form of a text file termed a protocol definition file (*.prtx). This file contains a list of all the experimental procedures in the experiment, which in LabBench is referred to as tests.
+
+When executed in an experiment each test will produce a result that is automatically saved by LabBench when the test has been completed and accepted by the experimentor. A test can also use one or more results from previously executed tests in order to automatically setup the parameters from the test. For example, in an experiment where evoked EEG potentials are recorded you may wish to set the intensity of the stimuli that evokes the EEG potentials to a percentage of the pain thresholds. In LabBench this may be accomplished with a protocol containing two tests:
+
+1. A [Multiple perception thresholds](method_of_limits.html) test that estimates the pain threshold.
+2. A [Evoked responses](evoked_responses.html) test that uses the threshold determined by the first test to set the intensity of the stimuli used to evoke a response to a predefined percentage of the pain threshold.
+
 ## Experiments
 
 # Installing and updating
@@ -61,11 +68,15 @@ Consequently, running an experiment with LabBench consists of the following step
 
 ## Tests
 
+### Test definition
+
+### Test documentation
+
 * Metatests
   * [Subject information](subject_information.html)
   * [Subject factors](factors.html)
 * Psychophysics
   * [Multiple perception thresholds](method_of_limits.html)
-  * [Psi method](psi_method.html)
+  * [Psi Threshold Estimation](psi_method.html)
   
 # Terms and abbreviations
