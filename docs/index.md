@@ -29,6 +29,14 @@ Consequently, LabBench is an attempt to solve a paradox that riddles scientific 
 
 The classical approach to this is to cram as many functions and the possibility perhaps to write scripts into the user interface. This certaintly maximizes the adaptability and flexibility of the software, however, it also maximizes the complexity of the user interface and maximizes the possibility of mistakes during an experiment. With the classical approach, the experience and displine of the scientist running the experiment is the only thing that ensures that the experiment is run in a consistent and reproducible manner.
 
+LabBench takes a diffirent approach, and instead it only provide adaptability and flexibility when it is needed. This is accomplised by automating experiments as much as possible, which is accomplies with protocol files that defines all procedures and their parameters in an experiment. When this protocol is executed by LabBench it guides the scientist through the experiment, presents only the user interface that is relevant to the experiment, automates setting up experimental procedures, and the storage of data.
+
+Consequently, running an experiment with LabBench consists of the following steps:
+
+1. Defining a protocol and experiment, by planning all intended experimental procedures and documenting them in a protocol.
+2. Using LabBench to execute this protocol in a series of sessions in the experiment.
+3. Analysing and publishing the data obtained in the experiment.
+
 ## Protocols
 
 ## Experiments
