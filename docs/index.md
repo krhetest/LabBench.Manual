@@ -35,7 +35,7 @@ Consequently, running an experiment with LabBench consists of the following step
 
 1. Defining a protocol and experiment, by planning all intended experimental procedures and documenting them in a protocol.
 2. Using LabBench to execute this protocol in a series of sessions in the experiment.
-3. Analysing and publishing the data obtained in the experiment.
+3. Exporting, analysing and publishing the data obtained in the experiment.
 
 ## Protocols
 
