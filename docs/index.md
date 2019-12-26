@@ -18,14 +18,14 @@
 
 # Overview
 
-LabBench is a software system for running neuroscience experiments on human subjects. It is based on knowledge on what are the best practices for running scientific studies, gained from more than 3000+ experiments in 25+ years at Center for Sensory-Motor Interaction (SMI), Aalborg University. As such it is a very opinionated software that tries to entice you into:
+LabBench is a software system for running neuroscience experiments on human subjects. It is based on best practices for running scientific studies, gained from more than 3000+ experiments in 25+ years at Center for Sensory-Motor Interaction (SMI), Aalborg University. Best practices that includes:
 
 1. Do all planning and thinking before your experiment, during your experiment your focus should be on the subject, the experimental procedures, and nothing else.
-2. Document everything about your experimental protocol before your experiments, making it easy and possible to reproduce your results. This also has the consequence that it is much more likely that each session in the experiment is run in the same and consistent manner.
+2. Document everything about your experimental protocol before your experiments, making it easy and possible to reproduce your results.
 3. Automate everything that can be automated, especially data storage in a way that ensures that data are stored in a consistent manner that makes it easy to analyse when the experiment is completed.
 4. Make it possible to share your experimental protocols with other scientists, thereby making your discoveries more applicable and useful to the scientific community at large.
 
-Consequently, LabBench is an attempt to solve a paradox that riddles software that are used in scientific studies. Software for scientific studies needs to be adaptable and flexible as the anoying thing about scientists is that they always want to do something novel, and at the same time experiments needs to be conducted in a very inflexible and displined way to ensure that all results are comparable and that the experiment can be reproduced.
+Consequently, LabBench is an attempt to solve a paradox that riddles scientific studies. Software for scientific studies needs to be adaptable and flexible as scientists always want to do something novel, and at the same time experiments needs to be conducted in a very inflexible and displined way to ensure that all results are comparable and that the experiment can be reproduced.
 
 The classical approach to this is to cram as many functions and the possibility perhaps to write scripts into the user interface. This certaintly maximizes the adaptability and flexibility of the software, however, it also maximizes the complexity of the user interface and maximizes the possibility of mistakes during an experiment. With the classical approach, the experience and displine of the scientist running the experiment is the only thing that ensures that the experiment is run in a consistent and reproducible manner.
 
