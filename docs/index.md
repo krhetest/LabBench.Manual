@@ -8,7 +8,7 @@
    4. [Logging](#logging)
    5. [Data collection](#data-collection)
 2. [Installing and updating](#installing-and-updating)
-3. [Adding research instruments](#adding-research-instruments)
+3. [Setting up devices](#setting-up-devices)
 4. [Setting up an experiment](#setting-up-an-experiment)
 5. [Running experiments](#running-experiments)
 6. [Exporting data](#exporting-data)
@@ -67,15 +67,21 @@ Consequently, **Devices** are actual physical devices that you have in your expe
 
 ## Experiments
 
-The protocols provices a specification of what is done in an experiment, but in a general way
+The protocols provices a specification of what is done in an experiment, but in a general way that makes it possible to reuse it in multiple experiments and to share it with the scientific community. Consequently, the protocol can specify which instruments it needs in order to be executed, but it does not specify the experimental setup that provides these instruments. That is instead the purpose of the experiment definition file (*.expx), which defines a single specific experiment that uses this protocol.
+
+The experiment definition file provide to specifications; 1) a specification of the experimental setup, meaning which devices are used and how are they connected to each other, and 2) a device mapping that maps each of these devices to the instruments that are required by the protocol.
 
 ## Logging
+
+Central to the execution of an experiment are good logging, not only good practices with regard to how the data is saved, but also that notes are taken throughout the experiment on all events that may influence the validity of the data and how it should be interpreted in the later data analysis and publication of the results.
+
+LabBench provides a logging system with three levels; system, experiment, and session. LabBench will record in these logs all it can automatically, such as the execution of tests, change of device settings, etc. It also allow the experimenter to record extra information to the logs in the form of free text notes, which can be used for all the things that LabBench cannot automatically log.
 
 ## Data collection
 
 # Installing and updating
 
-# Adding research instruments
+# Setting up devices
 
 # Setting up an experiment
 
