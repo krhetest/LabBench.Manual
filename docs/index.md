@@ -76,7 +76,7 @@ The experiment definition file provide to specifications; 1) a specification of 
 
 ## Logging
 
-Central to the execution of an experiment are good logging, not only good practices with regard to how the data is saved, but also that notes are taken throughout the experiment on all events that may influence the validity of the data and how it should be interpreted in the later data analysis and publication of the results.
+Central to the execution of an experiment are well maintained loggs, not only with regard to how the data is saved, but also that notes are taken throughout the experiment on all events that may influence the validity of the data and how it should be interpreted in the later data analysis and publication of the results.
 
 LabBench provides a logging system with three levels; system, experiment, and session. LabBench will record in these logs all it can automatically, such as the execution of tests, change of device settings, etc. It also allow the experimenter to record extra information to the logs in the form of free text notes, which can be used for all the things that LabBench cannot automatically log.
 
@@ -99,13 +99,23 @@ To install LabBench download the [installer](https://labbench.io) and run the in
 
 LabBench Runner is the only one of these programs that provides a graphical user interface, as it is used during an experimental session where the program needs to be inflexible and easy to use. The rests of the programs are console programs or as they are also sometimes referred to command line programs. This means they do not have a graphical user interface but instead they are run by opening a command prompt, typing their name (with parameters), and hitting enter.
 
-If you come from a non-technical faculty this may be new to you, and you may never have used a command prompt before. While a complete tutorial is too extensive for this manual, there are many tutorials on the command line that can be found on the net. One example is [Introduction to the command-line interface](https://tutorial.djangogirls.org/en/intro_to_command_line/), which is relatively short but covers everything except one thing that you will need in order to use LabBench. The only thing it does not cover is how to open a command line easily in a specific directory. You will for example need this when you have written experimental and protocol definition files and need to install them in LabBench, or when you need to export the results or logs from an experiment.
+If you come from a non-technical faculty this may be new to you, and you may never have used a command prompt before. While a complete tutorial is too extensive for this manual, there are many tutorials on the command line that can be found on the net. One example is [Introduction to the command-line interface](https://tutorial.djangogirls.org/en/intro_to_command_line/), which is relatively short but covers almost everything you will need in order to use LabBench. The only thing it does not cover is how to open a command line easily in a specific directory. You will need this when you have written experimental and protocol definition files and need to install them in LabBench, or when you need to export the results or logs from an experiment.
 
 To open a command line console in a specific directory, open Windows Explorer and go to the directory, then type `cmd` in the directory path box (marked with a red box below) and hit enter. This will open a command line console in the directory that you have navigated to with Windows Explorer.
 
 ![Opening Command Line from Windows Explorer][wndexp]
 
 ## Tools for writing Protocols and Experiments
+
+To setup experiments you will need to write experiment and protocol definition files, which are text files in a very specific format. LabBench is very strict with this format, any errors in one of these files will cause LabBench to reject the file and give an error.
+
+While you can use any text editor to write these files, it will be easier to write these files if you use a text editor that understands the format of these files, so it can assist you in writing them and provide you with feedback immediately if you make an error.
+
+One such editor is the [Atom editor](https://atom.io/ "A hackable text editor for the 21st Century"), which with the [Autocomplete XML Atom Package](https://atom.io/packages/autocomplete-xml "XML tag autocompletion for Atom text editor!") package can provide what is known as code completion for the experiment and protocol definition files.
+
+To enable this, install the Atom editor by downloading the [installer](https://atom.io/download/windows_x64) and running it. Once the Atom editor is installed, start the editor and go to File=>Settings. In the Settings panel goto Packages and search for the `autocomplete-xml` package and install it.
+
+After this, when you open an experiment or protocol definition file that are based on the [template]() 
 
 ## Updating LabBench
 

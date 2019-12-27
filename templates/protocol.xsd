@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="protocol" nillable="true" type="Protocol" />
+  <xs:complexType name="Protocol">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="defines" type="ArrayOfDefine" />
+      <xs:element minOccurs="0" maxOccurs="1" name="tests" type="ArrayOfChoice1" />
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="version" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDefine">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="define" nillable="true" type="Define" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Define">
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="value" type="xs:double" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfChoice1">
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element minOccurs="1" maxOccurs="1" name="threshold-estimation" nillable="true" type="ThresholdEstimationTest" />
+      <xs:element minOccurs="1" maxOccurs="1" name="multiple-perception-thresholds" nillable="true" type="MultiplePerceptionTest" />
+    </xs:choice>
+  </xs:complexType>
+  <xs:complexType name="ThresholdEstimationTest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Test">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="1" name="yes-no-task" type="YesNoResponse" />
+          <xs:element minOccurs="0" maxOccurs="1" name="channels" type="ArrayOfStimulusChannel" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Test" abstract="true">
+    <xs:sequence>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="update-rate-deterministic" type="DeterministicParameter" />
+        <xs:element minOccurs="0" maxOccurs="1" name="update-rate-random" type="UniformlyDistributedParameter" />
+      </xs:choice>
+      <xs:element minOccurs="0" maxOccurs="1" name="dependencies" type="ArrayOfTestDependency" />
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" />
+    <xs:attribute name="name" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="DeterministicParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="RateParameter">
+        <xs:attribute name="value" type="xs:int" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="RateParameter" abstract="true" />
+  <xs:complexType name="UniformlyDistributedParameter">
+    <xs:complexContent mixed="false">
+      <xs:extension base="RateParameter">
+        <xs:attribute name="min" type="xs:double" use="required" />
+        <xs:attribute name="max" type="xs:double" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfTestDependency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dependency" nillable="true" type="TestDependency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="TestDependency">
+    <xs:attribute name="ID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="MultiplePerceptionTest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Test">
+        <xs:sequence>
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="channel" type="MPTChannel" />
+        </xs:sequence>
+        <xs:attribute name="response-algorithm" type="ButtonMode" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="MPTChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="channel-dependencies" type="ArrayOfMPTChannelDependency" />
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="pulse" type="Pulse" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ramp" type="Ramp" />
+        <xs:element minOccurs="0" maxOccurs="1" name="combined" type="CombinedStimulus" />
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="channel-type" type="ChannelType" use="required" />
+    <xs:attribute name="Istart" type="xs:string" />
+    <xs:attribute name="Pstep" type="xs:string" />
+    <xs:attribute name="Ntest" type="xs:string" />
+    <xs:attribute name="Pdecrease" type="xs:string" />
+    <xs:attribute name="Pmin" type="xs:string" />
+    <xs:attribute name="Naverage" type="xs:string" />
+    <xs:attribute name="Ndiscard" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfMPTChannelDependency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dependency" nillable="true" type="MPTChannelDependency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="MPTChannelDependency">
+    <xs:attribute name="ID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="Pulse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Stimulus">
+        <xs:attribute name="Is" type="xs:string" />
+        <xs:attribute name="Ts" type="xs:string" />
+        <xs:attribute name="Tdelay" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Stimulus" abstract="true" />
+  <xs:complexType name="CombinedStimulus">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Stimulus">
+        <xs:sequence>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element minOccurs="0" maxOccurs="1" name="pulse" type="Pulse" />
+            <xs:element minOccurs="0" maxOccurs="1" name="ramp" type="Ramp" />
+          </xs:choice>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Ramp">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Stimulus">
+        <xs:attribute name="Is" type="xs:string" />
+        <xs:attribute name="Ts" type="xs:string" />
+        <xs:attribute name="Tdelay" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="ChannelType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="contineous" />
+      <xs:enumeration value="single-sample" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ButtonMode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="click-and-hold" />
+      <xs:enumeration value="click-and-release" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="YesNoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="ResponseAlgorithm" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="ResponseAlgorithm" abstract="true" />
+  <xs:complexType name="ArrayOfStimulusChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="channel" nillable="true" type="StimulusChannel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StimulusChannel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="channel-dependencies" type="ArrayOfChannelDependency" />
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="psi-method" type="PsiAlgorithm" />
+        <xs:element minOccurs="0" maxOccurs="1" name="up-down-method" type="UpDownAlgorithm" />
+      </xs:choice>
+      <xs:choice minOccurs="1" maxOccurs="1">
+        <xs:element minOccurs="0" maxOccurs="1" name="pulse" type="Pulse" />
+        <xs:element minOccurs="0" maxOccurs="1" name="ramp" type="Ramp" />
+        <xs:element minOccurs="0" maxOccurs="1" name="combined" type="CombinedStimulus" />
+      </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="channel-type" type="ChannelType" use="required" />
+    <xs:attribute name="trigger" type="xs:unsignedByte" use="required" />
+    <xs:attribute name="channel" type="xs:int" use="required" />
+    <xs:attribute name="Imax" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfChannelDependency">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="dependency" nillable="true" type="ChannelDependency" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChannelDependency">
+    <xs:attribute name="ID" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="PsiAlgorithm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="EstimationAlgorithm">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" name="gumbel" type="Gumbel" />
+            <xs:element minOccurs="0" maxOccurs="1" name="hyperbolic-secant" type="HyperbolicSecant" />
+            <xs:element minOccurs="0" maxOccurs="1" name="logistics" type="Logistic" />
+            <xs:element minOccurs="0" maxOccurs="1" name="log-quick" type="LogQuick" />
+            <xs:element minOccurs="0" maxOccurs="1" name="normal" type="Normal" />
+            <xs:element minOccurs="0" maxOccurs="1" name="quick" type="Quick" />
+            <xs:element minOccurs="0" maxOccurs="1" name="weibull" type="Weibull" />
+          </xs:choice>
+          <xs:element minOccurs="0" maxOccurs="1" name="beta" type="ArrayGenerator" />
+          <xs:element minOccurs="0" maxOccurs="1" name="alpha" type="ArrayGenerator" />
+          <xs:element minOccurs="0" maxOccurs="1" name="intensity" type="ArrayGenerator" />
+        </xs:sequence>
+        <xs:attribute name="number-of-trials" type="xs:string" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="EstimationAlgorithm" abstract="true" />
+  <xs:complexType name="UpDownAlgorithm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="EstimationAlgorithm">
+        <xs:sequence>
+          <xs:choice minOccurs="1" maxOccurs="1">
+            <xs:element minOccurs="0" maxOccurs="1" name="gumbel" type="Gumbel" />
+            <xs:element minOccurs="0" maxOccurs="1" name="hyperbolic-secant" type="HyperbolicSecant" />
+            <xs:element minOccurs="0" maxOccurs="1" name="logistics" type="Logistic" />
+            <xs:element minOccurs="0" maxOccurs="1" name="log-quick" type="LogQuick" />
+            <xs:element minOccurs="0" maxOccurs="1" name="normal" type="Normal" />
+            <xs:element minOccurs="0" maxOccurs="1" name="quick" type="Quick" />
+            <xs:element minOccurs="0" maxOccurs="1" name="weibull" type="Weibull" />
+          </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="up-rule" type="xs:string" />
+        <xs:attribute name="down-rule" type="xs:string" />
+        <xs:attribute name="step-size-up" type="xs:string" />
+        <xs:attribute name="step-size-down" type="xs:string" />
+        <xs:attribute name="step-size-reduction" type="xs:string" />
+        <xs:attribute name="max-step-size-reduction" type="xs:string" />
+        <xs:attribute name="step-size-type" type="StepType" use="required" />
+        <xs:attribute name="stop-criterion" type="StopCriterionType" use="required" />
+        <xs:attribute name="stop-rule" type="xs:string" />
+        <xs:attribute name="skip-rule" type="xs:string" />
+        <xs:attribute name="start-intensity" type="xs:string" />
+        <xs:attribute name="max-intensity" type="xs:string" />
+        <xs:attribute name="min-intensity" type="xs:string" />
+        <xs:attribute name="terminate-on-limit-reached" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Gumbel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PsychometricFunction" abstract="true">
+    <xs:attribute name="alpha" type="xs:double" use="required" />
+    <xs:attribute name="beta" type="xs:double" use="required" />
+    <xs:attribute name="lambda" type="xs:double" use="required" />
+    <xs:attribute name="gamma" type="xs:double" use="required" />
+  </xs:complexType>
+  <xs:complexType name="Weibull">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Quick">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Normal">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="LogQuick">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Logistic">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="HyperbolicSecant">
+    <xs:complexContent mixed="false">
+      <xs:extension base="PsychometricFunction" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:simpleType name="StepType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="absolute" />
+      <xs:enumeration value="relative" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="StopCriterionType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="trials" />
+      <xs:enumeration value="reversals" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayGenerator">
+    <xs:attribute name="type" type="ArrayAlgorithm" use="required" />
+    <xs:attribute name="n" type="xs:string" />
+    <xs:attribute name="x0" type="xs:string" />
+    <xs:attribute name="x1" type="xs:string" />
+    <xs:attribute name="base" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="ArrayAlgorithm">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="linspace" />
+      <xs:enumeration value="logspace" />
+      <xs:enumeration value="geomspace" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
