@@ -177,7 +177,7 @@ A backup of LabBench is performed with the following command:
 labconf backup [NAME OF BACKUP FILE]
 ```
 
-which will create a file with the name of [NAME OF BACKUP FILE] in the current directory.
+which will create a file with the name of [NAME OF BACKUP FILE] in the current directory. We highly recommend that you backup your LabBench installation frequently to safeguard you in the case that your computer malfunctions or is stolen.
 
 ## Restoring the system
 
@@ -192,6 +192,16 @@ labconf restore [NAME OF BACKUP FILE]
 where [NAME OF BACKUP FILE] is the name of the backup file that has previously been created with the `labconf backup` command.
 
 ## Resetting the system
+
+If you need to install a new major version of LabBench, or you want to reset the system to its initial state when LabBench is installed on a computer, then this can be performed with the following command:
+
+```labbench
+labconf reset -p "I AM VERY SURE I WANT TO DO THIS"
+```
+
+which will delete all devices, all experiments, all protocols, and all data from LabBench. The `-p` option is not required, if you do not specify this option on the command line the program will prompt you to type in the sentence `I AM VERY SURE I WANT TO DO THIS` before it will reset the system.
+
+Please consider very carefully if you need to reset the system before executing this command, as this will irrevocally delete all data without any possibility to restore it. You might want to consider backing up LabBench with the `labconf backup` command before you perform a `labconf reset` of the system.
 
 # Setting up devices
 
