@@ -133,7 +133,7 @@ From the LabBench version number you can determine whether a new LabBench versio
 
 * `MajorVersion`: LabBench will be incompatable when the `MajorVersion` number differs between two versions of LabBench.
 * `MinorVersion`: Functionality has been added to LabBench in a backward compatible manner. Data created by a version of LabBench with the same `MajorVersion` but a lower `MinorVersion` will be compatable. However, LabBench is not garanteed to be downgradable, and consequently, data created by a higher `MinorVersion` is not garanteed to be readable by a lower `MinorVersion`.
-* `PatchVersion`: Signifies a patch with bugfixes to existing functionality has been made in a backward compatible manner, however, no new functionality has been added to LabBench.
+* `PatchVersion`: Signifies a backward compatible patch with bugfixes to existing functionality, however, no new functionality has been added to LabBench.
 
 Consequently, when you install a new version of LabBench check if the `MajorVersion` of the currently installed and new version of LabBench are the same. If they are the same you can install the new version without problems. If they are not the same you will most likely need to wait until you have finished the experiments that are currently running using the computer, then export the data, install the new version of LabBench, and then perform a `labconf reset` on the system.
 
