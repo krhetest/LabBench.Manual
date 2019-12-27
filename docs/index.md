@@ -101,7 +101,7 @@ LabBench Runner is the only one of these programs that provides a graphical user
 
 If you come from a non-technical faculty this may be new to you, and you may never have used a command prompt before. While a complete tutorial is too extensive for this manual, there are many tutorials on the command line that can be found on the net. One example is [Introduction to the command-line interface](https://tutorial.djangogirls.org/en/intro_to_command_line/), which is relatively short but covers everything except one thing that you will need in order to use LabBench. The only thing it does not cover is how to open a command line easily in a specific directory. You will for example need this when you have written experimental and protocol definition files and need to install them in LabBench, or when you need to export the results or logs from an experiment.
 
-To open a
+To open a command line console in a specific directory, open Windows Explorer and go to the directory, then type `cmd` in the directory path box (marked with a red box below) and hit enter. This will open a command line console in the directory that you have navigated to with Windows Explorer.
 
 ![Opening Command Line from Windows Explorer][wndexp]
 
