@@ -278,9 +278,19 @@ If you have installed the Atom editor with the `autocomplete-xml` pacakge or eve
 
 ## Name and version
 
-Each protocol has a name and a version, which is used to form the ID it will be identified with in LabBench and used to be referenced with from experiment definition files (see [Writing experiments](#writing-experiments)).
+Each protocol has a name and a version, which is used to form the ID it will be identified with in LabBench and used to be referenced with from experiment definition files (see [Writing experiments](#writing-experiments)). The name and version of the protocol is specified with the `name` and `version` attributes on the `<protocol>` element:
 
-## Defines
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://labbench.io protocol.xsd"
+          name="MOL"
+          version="1.0.0">
+```
+
+In LabBench, the ID of a protocol will be formed from its `name` and `version` as `name`-`version`.
+
+## Defines and value types
 
 ## Tests
 
