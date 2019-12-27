@@ -25,7 +25,8 @@
    2. [Excel](#excel)
 9. [Writing protocols](#writing-protocols)
    1. [Tests](#tests)
-10. [Terms and abbreviations](#terms-and-abbreviations)
+10. [Writing experiments](#writing-experiments)
+11. [Terms and abbreviations](#terms-and-abbreviations)
 
 # Overview
 
@@ -239,7 +240,9 @@ Please consider very carefully if you need to reset the system before executing 
 * Psychophysics
   * [Multiple perception thresholds](method_of_limits.html)
   * [Psi Threshold Estimation](psi_method.html)
-  
+
+# Writing experiments
+
 # Terms and abbreviations
 
 [wndexp]: img/WndExplorer.png "Opening Command Line from Windows Explorer"
