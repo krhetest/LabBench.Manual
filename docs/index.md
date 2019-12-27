@@ -147,9 +147,9 @@ Consequently, when you install a new version of LabBench check if the `MajorVers
 
 LabBench has three log levels:
 
-* ERROR: Errors that affect the validity of the results collected in an experimental session.
-* STATUS: Information that is required in order to analyse and interpret the data from an experimental session correctly.
-* DEBUG: Extremely detailed information that is mostly relevant to debug and develop the LabBench system. Setting the log level to DEBUG will cause the LabBench database to consume a significant space on the harddisk of the computer.
+1. DEBUG: Extremely detailed information that is mostly relevant to debug and develop the LabBench system. Setting the log level to DEBUG will cause the LabBench database to consume a significant space on the harddisk of the computer.
+2. STATUS: Information that is required in order to analyse and interpret the data from an experimental session correctly.
+3. ERROR: Errors that affect the validity of the results collected in an experimental session.
 
 the log level can be controlled with the `labconf` command, with the following syntax:
 
@@ -163,7 +163,7 @@ will display the current log level for the system, whereas:
 labconf log [LOG LEVEL]
 ```
 
-where [LOG LEVEL] is substituted with either DEBUG, STATUS, ERROR, or DISABLED sets the lowest log level of the system, meaning that log messages with a lower level is not logged. If the log level is set to DISABLED all logging is disabled for the LabBench system.
+will set the lowest log level of the system, where [LOG LEVEL] is substituted with either DEBUG, STATUS, ERROR, or DISABLED. The log level of the system means that log messages with a lower level is not logged. If the log level is set to DISABLED all logging is disabled for the LabBench system.
 
 While it is highly recommended to set the log level to STATUS, it is not recommended to set it to ERROR or DISABLED as this will cause the system to discard information that may be critical for the analysis of your experimental data.
 
