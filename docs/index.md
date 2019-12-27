@@ -8,6 +8,9 @@
    4. [Logging](#logging)
    5. [Data collection](#data-collection)
 2. [Installing and updating](#installing-and-updating)
+   1. [Installing LabBench](#installing-labbench)
+   2. [Tools for writing Protocols and Experiments](#tools-for-writing-protocols-and-experiments)
+   3. [Updating LabBench](#updating-labbench)
 3. [Setting up devices](#setting-up-devices)
 4. [Setting up an experiment](#setting-up-an-experiment)
 5. [Running experiments](#running-experiments)
@@ -83,6 +86,29 @@ With LabBench there is no save button, instead all data is saved automatically t
 
 # Installing and updating
 
+## Installing LabBench
+
+To install LabBench download the [installer](https://labbench.io) and run the installer. This will install LabBench on your computer. LabBench consists of a series of programs that combined makes it possible to setup and run experiments and to export the results from these experiments. These programs are:
+
+1. **LabBench Runner**: A program that provides a graphical user interface for running experiments and their associated protocols.
+2. **labconf**: A console program for configuring LabBench.
+3. **labdev**: A console program for installing and managing the Devices that for experiments.
+4. **labprot**: A console program for installing and managing protocols.
+5. **labexp**: A console program for installing and managing protocols, as well as exporting data from an experiment.
+6. **lablog**: A console program for exporting the logs from an experiment.
+
+LabBench Runner is the only one of these programs that provides a graphical user interface, as it is used during an experimental session where the program needs to be inflexible and easy to use. The rests of the programs are console programs or as they are also sometimes referred to command line programs. This means they do not have a graphical user interface but instead they are run by opening a command prompt, typing their name (with parameters), and hitting enter.
+
+If you come from a non-technical faculty this may be new to you, and you may never have used a command prompt before. While a complete tutorial is too extensive for this manual, there are many tutorials on the command line that can be found on the net. One example is [Introduction to the command-line interface](https://tutorial.djangogirls.org/en/intro_to_command_line/), which is relatively short but covers everything except one thing that you will need in order to use LabBench. The only thing it does not cover is how to open a command line easily in a specific directory. You will for example need this when you have written experimental and protocol definition files and need to install them in LabBench, or when you need to export the results or logs from an experiment.
+
+To open a
+
+![Opening Command Line from Windows Explorer][wndexp]
+
+## Tools for writing Protocols and Experiments
+
+## Updating LabBench
+
 # Setting up devices
 
 # Setting up an experiment
@@ -113,3 +139,5 @@ With LabBench there is no save button, instead all data is saved automatically t
   * [Psi Threshold Estimation](psi_method.html)
   
 # Terms and abbreviations
+
+[wndexp]: img/WndExplorer.png "Opening Command Line from Windows Explorer"
