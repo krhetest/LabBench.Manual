@@ -40,7 +40,7 @@ Consequently, running an experiment with LabBench consists of the following step
 2. Using LabBench to execute this protocol in a series of sessions in the experiment.
 3. Exporting, analysing and publishing the data obtained in the experiment.
 
-This overview if intended to introduce you to the philosophy of how LabBench works and its central concepts. The following sections will introduce you to these central concepts, but will explain how they are implemented in LabBench. For a detailed explanation of how to use these concepts, please refer to later sections in this manual.
+This overview is intended to introduce you to the philosophy of how LabBench works and its central concepts. The following sections will introduce you to these central concepts, but will not explain how they are implemented in LabBench. For a detailed explanation of how to use these concepts, please refer to later sections in this manual.
 
 ## Protocols
 
@@ -55,17 +55,19 @@ However, this dependency is not hardcoded in the Evoked responses test. The inte
 
 ## Devices and instruments
 
-To actually run a neuroscience/psychophysical experiment you will need instruments to stimulate the subjects and to record their responses. In the example above, three instruments are required for the [Multiple perception thresholds](method_of_limits.html) test; a button used by the subject to indicate whether the stimuli are painful or not, 2) an electrical stimulator to create the stimuli, and 3) an analog stimulus generator for generating the control voltage for the electrical stimulator.
+To actually run a neuroscience/psychophysical experiment you will need instruments to stimulate the subjects and to record their responses. In the example above, three instruments are required for the [Multiple perception thresholds](method_of_limits.html) test; a button used by the subject to indicate whether the stimuli are painful or not, and 2) an electrical stimulator to create the stimuli.
 
 To provide access to these instruments, LabBench can communicate with and control Devices. A device is equipment that can implement a number of instrument interfaces. For the example, we will use the LabBenchIO device, which provides the following instrument interface:
 
 * **IButton**: Makes it possible for a subject to indicate a threshold by pressing the button. When the subject presses the button the reaction time to the last applied stimulus is also recorded. In the example this interface is used to indicate whether the stimuli are painfull or not.
-* **IAnalogGenerator**: Makes it possible to apply short (t < 1s) stimuli to a subject. The most commenly used short stimuli are electrical stimuli, which are used in the example above.
+* **IElectricalStimulator**: Makes it possible to apply electrical stimuli to a subject.
 * **IScale**: Makes it possible for a subject to rate his or her sensation on a psychophysical scale, such as a visual analog scale, numerical rating scale, or Wong-Baker faces scale. This instrument is not used in the example, but it would have been used instead of the **IButton** interface if a [Stimulus-response](stimulus_response.html) test had been used to establish the stimulus intensity in the [Evoked responses](evoked_responses.html) test.
 
-Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IAnalogGenerator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IAnalogGenerator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimulator it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
+Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IElectricalStimulator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IElectricalStimulator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimulator it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
 
 ## Experiments
+
+The protocols provices a specification of what is done in an experiment, but in a general way
 
 ## Logging
 
