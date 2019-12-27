@@ -79,6 +79,8 @@ LabBench provides a logging system with three levels; system, experiment, and se
 
 ## Data collection
 
+With LabBench there is no save button, instead all data is saved automatically to a database in a format that is structured from the protocol used in the experiment. When the experiment is completed all the data can be exported to a format that enables the scientist to analyse the data, such as Matlab or Excel.
+
 # Installing and updating
 
 # Setting up devices
