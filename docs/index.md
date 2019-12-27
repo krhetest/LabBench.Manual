@@ -12,6 +12,10 @@
    2. [Tools for writing Protocols and Experiments](#tools-for-writing-protocols-and-experiments)
    3. [Updating LabBench](#updating-labbench)
 3. [Setting up LabBench](#setting-up-labBench)
+   1. [Setting the log level](#setting-the-log-level)
+   2. [Backing up the system](#backing-up-the-system)
+   3. [Restoring the system](#restoring-the-system)
+   4. [Resetting the system](#resetting-the-system)
 4. [Setting up devices](#setting-up-devices)
 5. [Setting up an experiment](#setting-up-an-experiment)
 6. [Running experiments](#running-experiments)
@@ -132,14 +136,30 @@ In that case you can recover from the error in two ways:
 From the LabBench version number you can determine whether a new LabBench version will be compatable with the version of LabBench you have currently installed. LabBench uses [semantic versioning](https://semver.org/ "Semantic Versioning 2.0.0") where a version number consists of three numbers seperated by digits: `MajorVersion.MinorVersion.PatchVersion` that has the following definition:
 
 * `MajorVersion`: LabBench will be incompatable when the `MajorVersion` number differs between two versions of LabBench.
-* `MinorVersion`: Functionality has been added to LabBench in a backward compatible manner. Data created by a version of LabBench with the same `MajorVersion` but a lower `MinorVersion` will be compatable. However, LabBench is not garanteed to be downgradable, and consequently, data created by a higher `MinorVersion` is not garanteed to be readable by a lower `MinorVersion`.
+* `MinorVersion`: Functionality has been added to LabBench in a backward compatible manner. Data created by a version of LabBench with the same `MajorVersion` but a lower `MinorVersion` will be compatible. However, LabBench is not garanteed to be downgradable, and consequently, data created by a higher `MinorVersion` is not garanteed to be readable by a lower `MinorVersion`.
 * `PatchVersion`: Signifies a backward compatible patch with bugfixes to existing functionality, however, no new functionality has been added to LabBench.
 
 Consequently, when you install a new version of LabBench check if the `MajorVersion` of the currently installed and new version of LabBench are the same. If they are the same you can install the new version without problems. If they are not the same you will most likely need to wait until you have finished the experiments that are currently running using the computer, then export the data, install the new version of LabBench, and then perform a `labconf reset` on the system.
 
 # Setting up LabBench
 
+## Setting the log level
+
+## Backing up the system
+
+## Restoring the system
+
+## Resetting the system
+
 # Setting up devices
+
+## Listing all installed devices
+
+## Installing a device
+
+## Removing a device
+
+## Check installed devices
 
 # Setting up an experiment
 
