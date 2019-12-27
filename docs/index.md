@@ -113,9 +113,11 @@ While you can use any text editor to write these files, it will be easier to wri
 
 One such editor is the [Atom editor](https://atom.io/ "A hackable text editor for the 21st Century"), which with the [Autocomplete XML Atom Package](https://atom.io/packages/autocomplete-xml "XML tag autocompletion for Atom text editor!") package can provide what is known as code completion for the experiment and protocol definition files.
 
-To enable this, install the Atom editor by downloading the [installer](https://atom.io/download/windows_x64) and running it. Once the Atom editor is installed, start the editor and go to File=>Settings. In the Settings panel goto Packages and search for the `autocomplete-xml` package and install it.
+To enable this, install the Atom editor by downloading the [installer](https://atom.io/download/windows_x64 "Direct download link for Windows") and running it. Once the Atom editor is installed, start the editor and go to File=>Settings. In the Settings panel goto Packages and search for the `autocomplete-xml` package and install it.
 
-After this, when you open an experiment or protocol definition file that are based on the [template]() 
+After this, when you open an experiment or protocol definition file that are based on the [template](https://github.com/Inventors-Way/LabBench.Manual/tree/master/templates "Templates for experiment and protocol definition files") with the Atom editor, you will get code completion and waving lines under errors in the files.
+
+An alternative but far superior tool for editing these files would be to install [Visual Studio](https://visualstudio.microsoft.com/vs/ "Code faster. Work smarter. Create the future with the best-in-class IDE."), which is far more robust in its code completion and error detection than the Atom editor. It is however also rather large and is a download and install of several gigabytes. With visual studio you will get code completion and error detection out of the box.
 
 ## Updating LabBench
 
