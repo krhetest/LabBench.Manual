@@ -153,13 +153,13 @@ LabBench has three log levels:
 
 the log level can be controlled with the `labconf` command, with the following syntax:
 
-```dos
+```labbench
 labconf log
 ```
 
 will display the current log level for the system, whereas:
 
-```dos
+```labbench
 labconf log [LOG LEVEL]
 ```
 
@@ -169,7 +169,27 @@ While it is highly recommended to set the log level to STATUS, it is not recomme
 
 ## Backing up the system
 
+LabBench can backup its internal database to a single external file, which can later be used to restore the system or to clone the setup and data of LabBench to a new computer.
+
+A backup of LabBench is performed with the following command:
+
+```labbench
+labconf backup [NAME OF BACKUP FILE]
+```
+
+which will create a file with the name of [NAME OF BACKUP FILE] in the current directory.
+
 ## Restoring the system
+
+LabBench can be restored from a previous backup, provided that this backup was created with the same version of LabBench.
+
+Restoring LabBench can be done with the following command:
+
+```labbench
+labconf restore [NAME OF BACKUP FILE]
+```
+
+where [NAME OF BACKUP FILE] is the name of the backup file that has previously been created with the `labconf backup` command.
 
 ## Resetting the system
 
