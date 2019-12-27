@@ -27,6 +27,7 @@
    1. [Tests](#tests)
 10. [Writing experiments](#writing-experiments)
 11. [Terms and abbreviations](#terms-and-abbreviations)
+12. [A short primer on xml files](#a-short-primer-on-xml-files)
 
 # Overview
 
@@ -228,11 +229,62 @@ Please consider very carefully if you need to reset the system before executing 
 
 # Writing protocols
 
+Writing a protocol consists of writing a protocol definition file (*.prtx) which is a text file in an e**x**tensible **m**arkup **l**anguage (xml) format. If you are unfamiliar with xml files, you are recommended to read the sectoin [A short primer on xml files](#a-short-primer-on-xml-files) before reading the rest of this section.
+
+An example of a full protocol definition file is given below:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://labbench.io protocol.xsd"
+          name="MOL"
+          version="1.0.0">
+  <defines>
+    <!-- Stimuli -->
+    <define name="Ts" value="1"/>    
+    <!-- Method of Limits -->
+    <define name="Istart" value="0.2"/>
+    <define name="Naverage" value="3"/>
+    <define name="Ndiscard" value="1"/>
+    <define name="Ntest" value="2"/>
+    <define name="Pdecrease" value="0.2"/>
+    <define name="Pmin" value="0.05"/>
+    <define name="Pstep" value="0.2"/>
+  </defines>
+  <tests> 
+    <multiple-perception-thresholds ID="T1" name="MPT" response-algorithm="click-and-release"> ... </multiple-perception-thresholds>
+    <multiple-perception-thresholds ID="T2" name="Fast MPT" response-algorithm="click-and-release"> ... </multiple-perception-thresholds>
+  </tests>
+</protocol>
+```
+
+Please note that the full content of the `<multiple-perception-thresholds>` is not shown in the experiment. The following sections will go through each part of this protocol definition file to explain how to write them and how they are used to define an experimental protocol.
+
+## Code completion and error checking
+
+If the text editor supports it, it may provide code completion and error checking if the xml file/protocol definition file specifies what is a valid syntax for the file. This is what is specified with the `xsi:schemaLocation` and `xmlns:xsi`attribute on the `<protocol>` element:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://labbench.io protocol.xsd"
+          name="MOL"
+          version="1.0.0">
+```
+
+The `xsi:schemaLocation` specifies the location of the xml schema which contains the grammar for the protocol definition files. In this example it requires the xml schema to be names `protocol.xsd` and to be located in the same directory as the protocol definition file.
+
+If you have installed the Atom editor with the `autocomplete-xml` pacakge or even better Visual Studio, you will then be able to benefit from code completion and error checking.
+
+## Name and version
+
+Each protocol has a name and a version, which is used to form the ID it will be identified with in LabBench and used to be referenced with from experiment definition files (see [Writing experiments](#writing-experiments)).
+
+## Defines
+
 ## Tests
 
-### Test definition
-
-### Test documentation
+## List of tests
 
 * Metatests
   * [Subject information](subject_information.html)
@@ -246,3 +298,5 @@ Please consider very carefully if you need to reset the system before executing 
 # Terms and abbreviations
 
 [wndexp]: img/WndExplorer.png "Opening Command Line from Windows Explorer"
+
+# A short primer on xml files
