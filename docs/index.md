@@ -4,7 +4,7 @@
 1. [Overview](#overview)
    1. [Protocols](#protocols)
    2. [Experiments](#experiments)
-   3. [Instruments](#instruments)
+   3. [Devices and instruments](#devices-and-instruments)
    4. [Logging](#logging)
    5. [Data collection](#data-collection)
 2. [Installing and updating](#installing-and-updating)
@@ -51,9 +51,19 @@ When executed in an experiment each test will produce a result that is automatic
 1. A [Multiple perception thresholds](method_of_limits.html) test that estimates the pain threshold.
 2. A [Evoked responses](evoked_responses.html) test that uses the threshold determined by the first test to set the intensity of the stimuli used to evoke a response to a predefined percentage of the pain threshold.
 
-However, this dependency is not hardcoded in the Evoked responses test. The intensity could come from any test from which an intensity can be calculated. The intensity may also be set from a [Stimulus-response](stimulus_response.html) test, as the intensity that evokes a predefined psychophysical response on a visual analog scale (VAS). In the above example this VAS scale may for example be defined with the anchor points of 0cm) no sensation, 4cm) pain threshold, 10cm) pain tolerance threshold.
+However, this dependency is not hardcoded in the Evoked responses test. The intensity could come from any test from which an intensity can be calculated. The intensity may also be set from a [Stimulus-response](stimulus_response.html) test as the intensity that evokes a predefined psychophysical response on a visual analog scale (VAS). In the above example this VAS scale may for example be defined with the anchor points of 0cm) no sensation, 4cm) pain threshold, 10cm) pain tolerance threshold.
 
-## Instruments
+## Devices and instruments
+
+To actually run a neuroscience/psychophysical experiment you will need instruments to stimulate the subjects and to record their responses. In the example above, three instruments are required for the [Multiple perception thresholds](method_of_limits.html) test; a button used by the subject to indicate whether the stimuli are painful or not, 2) an electrical stimulator to create the stimuli, and 3) an analog stimulus generator for generating the control voltage for the electrical stimulator.
+
+To provide access to these instruments, LabBench can communicate with and control Devices. A device is equipment that can implement a number of instrument interfaces. For the example, we will use the LabBenchIO device, which provides the following instrument interface:
+
+* **IButton**: Makes it possible for a subject to indicate a threshold by pressing the button. When the subject presses the button the reaction time to the last applied stimulus is also recorded. In the example this interface is used to indicate whether the stimuli are painfull or not.
+* **IAnalogGenerator**: Makes it possible to apply short (t < 1s) stimuli to a subject. The most commenly used short stimuli are electrical stimuli, which are used in the example above.
+* **IScale**: Makes it possible for a subject to rate his or her sensation on a psychophysical scale, such as a visual analog scale, numerical rating scale, or Wong-Baker faces scale. This instrument is not used in the example, but it would have been used instead of the **IButton** interface if a [Stimulus-response](stimulus_response.html) test had been used to establish the stimulus intensity in the [Evoked responses](evoked_responses.html) test.
+
+Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IAnalogGenerator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IAnalogGenerator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimulator it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
 
 ## Experiments
 
