@@ -11,16 +11,17 @@
    1. [Installing LabBench](#installing-labbench)
    2. [Tools for writing Protocols and Experiments](#tools-for-writing-protocols-and-experiments)
    3. [Updating LabBench](#updating-labbench)
-3. [Setting up devices](#setting-up-devices)
-4. [Setting up an experiment](#setting-up-an-experiment)
-5. [Running experiments](#running-experiments)
-6. [Exporting data](#exporting-data)
-7. [Data analysis](#data-analysis)
+3. [Setting up LabBench](#setting-up-labBench)
+4. [Setting up devices](#setting-up-devices)
+5. [Setting up an experiment](#setting-up-an-experiment)
+6. [Running experiments](#running-experiments)
+7. [Exporting data](#exporting-data)
+8. [Data analysis](#data-analysis)
    1. [Matlab](#matlab)
    2. [Excel](#excel)
-8. [Writing protocols](#writing-protocols)
+9. [Writing protocols](#writing-protocols)
    1. [Tests](#tests)
-9. [Terms and abbreviations](#terms-and-abbreviations)
+10. [Terms and abbreviations](#terms-and-abbreviations)
 
 # Overview
 
@@ -66,7 +67,7 @@ To provide access to these instruments, LabBench can communicate with and contro
 * **IElectricalStimulator**: Makes it possible to apply electrical stimuli to a subject.
 * **IScale**: Makes it possible for a subject to rate his or her sensation on a psychophysical scale, such as a visual analog scale, numerical rating scale, or Wong-Baker faces scale. This instrument is not used in the example, but it would have been used instead of the **IButton** interface if a [Stimulus-response](stimulus_response.html) test had been used to establish the stimulus intensity in the [Evoked responses](evoked_responses.html) test.
 
-Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IElectricalStimulator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IElectricalStimulator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimulator it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
+Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IElectricalStimulator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IElectricalStimulator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimuli it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
 
 ## Experiments
 
@@ -120,6 +121,23 @@ After this, when you open an experiment or protocol definition file that are bas
 An alternative but far superior tool for editing these files would be to install [Visual Studio](https://visualstudio.microsoft.com/vs/ "Code faster. Work smarter. Create the future with the best-in-class IDE."), which is far more robust in its code completion and error detection than the Atom editor. It is however also rather large and is a download and install of several gigabytes. With visual studio you will get code completion and error detection out of the box.
 
 ## Updating LabBench
+
+LabBench may be updated by downloading a new installer and installing the new version over the old version of LabBench. This will not touch the installed devices, experiments, or protocols or the data contained within LabBench. However, care must be taken before a new version of LabBench is installed, as the new LabBench may not be compatible with the old version. If it is incompatable it will not be able to read the data from the old version of LabBench, and when you list installed devices, experiments, and protocols it will appear that none are installed and LabBench will display a warning with incompatable data present.
+
+In that case you can recover from the error in two ways:
+
+1. Purge all the old data with with the `labconf reset` command. Warning this will delete everything in the system, only perform this action if you are abselutely sure that you have exported all data from LabBench and you have no need of the old LabBench setup anymore.
+2. Manually uninstall LabBench, and install an old version of LabBench that is compatable with the data in system. After this you can use the old LabBench installation to export your data, before you reinstall the new version of LabBench, and purge the data with the `labconf reset` command.
+
+From the LabBench version number you can determine whether a new LabBench version will be compatable with the version of LabBench you have currently installed. LabBench uses [semantic versioning](https://semver.org/ "Semantic Versioning 2.0.0") where a version number consists of three numbers seperated by digits: `MajorVersion.MinorVersion.PatchVersion` that has the following definition:
+
+* `MajorVersion`: LabBench will be incompatable when the `MajorVersion` number differs between two versions of LabBench.
+* `MinorVersion`: Functionality has been added to LabBench in a backward compatible manner. Data created by a version of LabBench with the same `MajorVersion` but a lower `MinorVersion` will be compatable. However, LabBench is not garanteed to be downgradable, and consequently, data created by a higher `MinorVersion` is not garanteed to be readable by a lower `MinorVersion`.
+* `PatchVersion`: Signifies a patch with bugfixes to existing functionality has been made in a backward compatible manner, however, no new functionality has been added to LabBench.
+
+Consequently, when you install a new version of LabBench check if the `MajorVersion` of the currently installed and new version of LabBench are the same. If they are the same you can install the new version without problems. If they are not the same you will most likely need to wait until you have finished the experiments that are currently running using the computer, then export the data, install the new version of LabBench, and then perform a `labconf reset` on the system.
+
+# Setting up LabBench
 
 # Setting up devices
 
