@@ -437,7 +437,7 @@ Where a test requires a stimulus as a parameter, any of these elements can be us
 <pulse Is="Is" Ts="Ts" Tdelay="0"/>
 ```
 
-However, the following would achieve the same result in an albeit more wastefull manner:
+However, the following would achieve the same result, albeit in a more wastefull manner:
 
 ```xml
 <combined>
@@ -445,7 +445,7 @@ However, the following would achieve the same result in an albeit more wastefull
 </combined>
 ```
 
-There a set of stimulus parameters that if they are used by a stimulus element always has the same meaning:
+There is a set of stimulus parameters that always have the same meaning:
 
 |Parameter|Type|Specification|
 |---------|----|---------|
@@ -453,9 +453,9 @@ There a set of stimulus parameters that if they are used by a stimulus element a
 |Ts       |calculated|The duration of the stimulus|
 |Tdelay   |calculated|Delay from the onset of the stimulus with respect to time zero|
 
-Time in the stimulus specification is given in mileseconds (ms).
+Stimulus elements may define additional parameters that are specific to them. Time in the stimulus specification is given in mileseconds (ms).
 
-Please note, that even though LabBench will allow you to specify arbitrary complicated stimuli, each device will have limitations on how complex stimuli they can handle. Consequently, if this is exceeded the device used in a test may be incapable of executing a stimulus that has been specified in a protocol.
+Please note, that even though LabBench will allow you to specify arbitrary complicated stimuli by using `<combined>` stimulus elements, each device will have limitations on how complex stimuli they can handle. Consequently, if this is exceeded the device used in a test may be incapable of executing a stimulus that has been specified in a protocol.
 
 [Go to table of contents](#table-of-contents)
 
@@ -478,6 +478,56 @@ The `<ramp>` stimulus element is used to specify a linearly increasing stimulus 
 [Go to table of contents](#table-of-contents)
 
 ## Tests
+
+Tests are the cornerstone of LabBench and are the units from which protocols are constructed. Each test is defined by parameters that are common and which has to be specified for all tests regardless of their type, and parameters that are specific for each type of tests.
+
+Tests are specified in the `<tests>` element of the protocol definition file:
+
+```xml
+<tests>
+  <multiple-perception-thresholds ID="T1" name="MPT" response-algorithm="click-and-release"> ... </multiple-perception-thresholds>
+  <multiple-perception-thresholds ID="T2" 
+                                  name="Fast Multiple Perception Test" 
+                                  response-algorithm="click-and-release">
+    <update-rate-deterministic value="2000" />
+    <dependencies>
+      <dependency ID="T01"/>
+    </dependencies>
+  <channel ID="C01"
+           channel-type="contineous"
+             name="Rect"
+             Istart="0.9 * T1['C01']"
+             Naverage="Naverage"
+             Ndiscard="Ndiscard"
+             Ntest="Ntest"
+             Pdecrease="Pdecrease"
+             Pmin="Pmin"
+             Pstep="Pstep">
+      <channel-dependencies />
+      <pulse Is="Is" Ts="Ts" Tdelay="0"/>
+    </channel>
+    <channel ID="C02"
+             channel-type="single-sample"
+             name="TE"
+             Istart="0.9 * T1['C01']"
+             Naverage="Naverage"
+             Ndiscard="Ndiscard"
+             Ntest="Ntest"
+             Pdecrease="Pdecrease"
+             Pmin="Pmin"
+             Pstep="Pstep">
+      <channel-dependencies>
+        <dependency ID="C01"/>
+      </channel-dependencies>
+      <combined>
+        <pulse Is="0.1*C['C01']" Ts="20 + Ts" Tdelay="0"/>
+        <pulse Is="Is" Ts="Ts" Tdelay="20"/>
+      </combined>
+    </channel>
+  </multiple-perception-thresholds>  
+</tests>
+```
+
 
 [Go to table of contents](#table-of-contents)
 
