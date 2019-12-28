@@ -580,21 +580,25 @@ All tests has the following common parameters:
 * `<update-rate>`:
 * `<dependencies>`:
 
-[Go to table of contents](#table-of-contents)
-
-### ID
+In the example above, parameters such as the `response-algorithm` attribute and `<channel>` element are specific to the `<multiple-perception-thresholds>` test. An explation of their function is found in the documentation for the [Multiple perception thresholds](method_of_limits.html "A test that estimates multiple perception thresholds with method of limits") test.
 
 [Go to table of contents](#table-of-contents)
 
-### Name
+### Test Identifier (`ID="T02"`)
+
+
 
 [Go to table of contents](#table-of-contents)
 
-### Update Rate
+### Test Name (`Name="Fast Multiple Perception Test"`)
 
 [Go to table of contents](#table-of-contents)
 
-### Dependencies
+### Update Rate (`<update-rate-deterministic>`)
+
+[Go to table of contents](#table-of-contents)
+
+### Dependencies (`<dependencies><dependency ID="T01" />`)
 
 [Go to table of contents](#table-of-contents)
 
@@ -603,8 +607,8 @@ All tests has the following common parameters:
 * Metatests
   * [Subject information](subject_information.html)
 * Psychophysics
-  * [Multiple perception thresholds](method_of_limits.html)
-  * [Psi Threshold Estimation](psi_method.html)
+  * [Multiple perception thresholds](method_of_limits.html "A test that estimates multiple perception thresholds with method of limits")
+  * [Psi Threshold Estimation](psi_method.html )
 
 [Go to table of contents](#table-of-contents)
 
