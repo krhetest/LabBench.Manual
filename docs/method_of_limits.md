@@ -149,13 +149,13 @@ Definition of an update rate with either:
 
 element is common to all LabBench tests, and is always the first element in a test definition.
 
-Please refer to [To Be Written](to-be-written) for a description of how to define the update rate for a test.
+Please refer to [Tests](index.html#tests) for a description of how to define the update rate for a test.
 
 ### Element: Definition of dependencies
 
 Definition of test dependencies with ```<dependency>``` is common to all LabBench tests, and is always the second element in a test definition.
 
-Please refer to [To Be Written](to-be-written) for a description of how to define test dependencies.
+Please refer to [Tests](index.html#tests) for a description of how to define test dependencies.
 
 ### Element: ```<channels>```
 
@@ -197,7 +197,7 @@ Dependencies to other stimulus channels are defined with ```<depency>``` element
 
 Definition of stimuli is common for all tests that use the IAnalogStimulator interface.
 
-Please refer to [To Be Written](to-be-written) for a description of how to define stimuli.
+Please refer to [Stimuli](index.html#stimuli) for a description of how to define stimuli.
 
 ## Test result
 

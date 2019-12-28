@@ -575,10 +575,10 @@ where the second test has been expanded to show its full content in the example 
 
 All tests has the following common parameters:
 
-* `ID="[ID OF THE TEST]"`:
-* `name="[Human readable name of the test]`:
-* `<update-rate>`:
-* `<dependencies>`:
+* `ID="[ID OF THE TEST]"`: A unique ID for the test
+* `name="[Human readable name of the test]`: A human readable name that is used in the Protocol View in LabBench Runner.
+* `<update-rate>`: the update rate by which the test is updated by LabBench Runner.
+* `<dependencies>`: which tests the test is dependent on.
 
 In the example above, parameters such as the `response-algorithm` attribute and `<channel>` element are specific to the `<multiple-perception-thresholds>` test. An explation of their function is found in the documentation for the [Multiple perception thresholds](method_of_limits.html "A test that estimates multiple perception thresholds with method of limits") test.
 
