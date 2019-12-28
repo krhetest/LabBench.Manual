@@ -374,22 +374,40 @@ LabBench provides the following stimulus elements:
 Where a test requires a stimulus as a parameter, any of these elements can be used as the root element. Consequently, if a single rectangular pulse was required instead of the threshold electrotonus in the example above, this could be specified as:
 
 ```xml
-<pulse Is="Is" Ts="Ts" Tdelay="20"/>
+<pulse Is="Is" Ts="Ts" Tdelay="0"/>
 ```
 
 However, the following would achieve the same result in an albeit more wastefull manner:
 
 ```xml
 <combined>
-  <pulse Is="Is" Ts="Ts" Tdelay="20"/>
+  <pulse Is="Is" Ts="Ts" Tdelay="0"/>
 </combined>
 ```
 
+There a set of stimulus parameters that if they are used by a stimulus element always has the same meaning:
+
+|Parameter|Type|Specification|
+|---------|----|---------|
+|Is       |calculated|The intensity of the stimulus|
+|Ts       |calculated|The duration of the stimulus|
+|Tdelay   |calculated|Delay from the onset of the stimulus with respect to time zero|
+
+Time in the stimulus specification is given in mileseconds (ms).
+
+Please note, that even though LabBench will allow you to specify arbitrary complicated stimuli, each device will have limitations on how complex stimuli they can handle. Consequently, if this is exceeded the device used in a test may be incapable of executing a stimulus that has been specified in a protocol.
+
 ### Combined
+
+The `<combined>` stimulus element is used to construct stimuli as the sum of other stimulus elements. The Combined stimulus element can be used within itself, and consequently, Combined stimulus elements can be nested arbitrarely deep. This is not recommended.
 
 ### Pulse
 
+The `<pulse>` stimulus element is used to specify a retangular stimulus that has the intensity `Is` for `Ts` mileseconds.
+
 ### Ramp
+
+The `<ramp>` stimulus element is used to specify a linearly increasing stimulus that increases from 0 to `Is`over `Ts` mileseconds.
 
 ## Tests
 
