@@ -231,7 +231,7 @@ Please consider very carefully if you need to reset the system before executing 
 
 Writing a protocol consists of writing a protocol definition file (*.prtx) which is a text file in an e**x**tensible **m**arkup **l**anguage (xml) format. If you are unfamiliar with xml files, you are recommended to read the sectoin [A short primer on xml files](#a-short-primer-on-xml-files) before reading the rest of this section.
 
-An example of a full protocol definition file is given below:
+An example of a protocol definition file is given below:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -258,7 +258,7 @@ An example of a full protocol definition file is given below:
 </protocol>
 ```
 
-Please note that the full content of the `<multiple-perception-thresholds>` is not shown in the experiment. The following sections will go through each part of this protocol definition file to explain how to write them and how they are used to define an experimental protocol.
+Please note that the full content of the `<multiple-perception-thresholds>` is not shown in the example. The following sections will go through each part of this protocol definition file to explain how to write them and how they are used to define an experimental protocol.
 
 ## Code completion and error checking
 
@@ -288,13 +288,55 @@ Each protocol has a name and a version, which is used to form the ID it will be 
           version="1.0.0">
 ```
 
-In LabBench, the ID of a protocol will be formed from its `name` and `version` as `name`-`version`.
+In LabBench, the ID of a protocol will be formed from its `name` and `version` as `name`-`version`. LabBench can have multiple versions of the same protocol installed, so experiments may use different versions of the same protocol.
 
-## Defines and value types
+## Values
+
+For the protocol and its tests there are parameters that needs to be set in order to specify a protocol. Two parameters have allready been described; the `name` and `version` of the protocol. All parameters have a type which defines which values that are valid for the parameter and how it is determined. In the case of the `name` and `version` parameters they are both text parameters. LabBench has the following types of parameters:
+
+| Type       |Description                                                              |
+|:----------:|-------------------------------------------------------------------------|
+| Text       |Can contain text                                                         |
+| Number     |Any number, for some parameters it may be required to be an integer      |
+| Enum       |A set of predefined values are allowed (e.g. color = {RED, GREEN, BLUE}) |
+| Calculated |The value of the parameter is calculated from an arithmic expression     |
+
+The Calculated type is what allow tests in LabBench to depend and be configured from the results of other tests, as depending on parameter the calculated parameter may have access to defines in the protocol, previous test results, and the current test result. For example a calculated parameter may be defined as:
+
+```xml
+Istart="0.9 * T1['C01']"
+```
+
+which will set the `Istart` parameter to 0.9 of the estimated threshold of the stimulus `C01` from the result of the test with `ID="T1"`. That the threshold for the `C01` was accessed with the `T1['C01']` notation was depending on the type of test result. Each type test result offers different results, and as a consequence different methods and notations for accessing their results. Please refer to  [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover the notations and methods for accessing the results of a test.
+
+The result of the currently running test is accessed with `C`, for example in a threshold estimation with threshold electrotonus the electrical stimulus may be constructed as:
+
+```xml
+<combined>
+  <pulse Is="0.1*C['C01']" Ts="20 + Ts" Tdelay="0"/>
+  <pulse Is="Is" Ts="Ts" Tdelay="20"/>
+</combined>
+```
+
+which will construct the stimuli as the summation of two rectangular stimuli:
+
+1. The first stimulus is subthreshold and set to 0.1 of the threshold of the `C01` stimulus being estimated in the threshold estimation test, and
+2. The second stimulus is the test stimulus for which the threshold intensity `Is` is being estimated.
+
+The example above also uses defines, which are described in the next section [Defines](#defines) and a test dependent variable `Is` that is used to adjust the intensity of the stimulus so the test can adjust this variable and in this process estimate the threshold for the stimulus. Please refer to  [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover which test dependent variables that are available in each calculated parameter for a test.
+
+Since `C` is used to access the result of the current test it is an error to use `C` as a test ID. It is also an error to use any defines or test dependent variables as a test ID. The easiest way to avoid these errors is to always use the notion `T[NUMBER]` where `[NUMBER]` is substituted with a consequetive number as test IDs (i.e. the first test in the protocol would have `ID="T01"`, second `ID="T02"`, etc.). This convention is garenteed in the implementation of LabBench never to conflict with a test dependent variable.
+
+## Defines
+
+Tests are specified by setting up their parameters, in many cases it is desirable to have a mechanism by which the same parameters in multiple tests can be set to the same value. One example could for example the width (Ts) of stimuli in multiple threshold estimation tests.
+
+## Stimuli
+
 
 ## Tests
 
-## List of tests
+## Test documentation
 
 * Metatests
   * [Subject information](subject_information.html)
