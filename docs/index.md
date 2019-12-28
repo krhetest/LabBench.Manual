@@ -323,13 +323,13 @@ which will construct the stimuli as the summation of two rectangular stimuli:
 1. The first stimulus is subthreshold and set to 0.1 of the threshold of the `C01` stimulus being estimated in the threshold estimation test, and
 2. The second stimulus is the test stimulus for which the threshold intensity `Is` is being estimated.
 
-The example above also uses defines, which are described in the next section [Defines](#defines) and a test dependent variable `Is` that is used to adjust the intensity of the stimulus so the test can adjust this variable and in this process estimate the threshold for the stimulus. Please refer to  [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover which test dependent variables that are available in each calculated parameter for a test.
+The example above also uses defines, which are described in the next section [Defines](#defines "A mechanism for supplying the same value to multiple parameters") and a test dependent variable `Is` that is used to adjust the intensity of the stimulus so the test can adjust this variable and in this process estimate the threshold for the stimulus. Please refer to  [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover which test dependent variables that are available in each calculated parameter for a test.
 
-Since `C` is used to access the result of the current test it is an error to use `C` as a test ID. It is also an error to use any defines or test dependent variables as a test ID. The easiest way to avoid these errors is to always use the notion `T[NUMBER]` where `[NUMBER]` is substituted with a consequetive number as test IDs (i.e. the first test in the protocol would have `ID="T01"`, second `ID="T02"`, etc.). This convention is garenteed in the implementation of LabBench never to conflict with a test dependent variable.
+Since `C` is used to access the result of the current test it is an error to use `C` as a test ID. It is also an error to use any defines or test dependent variables as a test ID. The easiest way to avoid these errors is to always use the notion `T[NUMBER]` where `[NUMBER]` is substituted with a consequetive number as test IDs (i.e. the first test in the protocol would have `ID="T01"`, second `ID="T02"`, etc.). This convention is garenteed to conflict with a test dependent variable, and as a protocol writer you will need to ensure that you do not use a test ID as the name of a define.
 
 ## Defines
 
-Tests are specified by setting up their parameters, in many cases it is desirable to have a mechanism by which the same parameters in multiple tests can be set to the same value. One example could for example the width (Ts) of stimuli in multiple threshold estimation tests.
+Tests are specified by setting up their parameters, in many cases it is desirable to have a mechanism by which the same parameters in multiple tests can be set to the same value. One example could for example the width (Ts) of stimuli in multiple threshold estimation tests, which was used in the stimulus example in [Values](#values "The type of parameters that LabBench support").
 
 ## Stimuli
 
