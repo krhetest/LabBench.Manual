@@ -24,7 +24,13 @@
    1. [Matlab](#matlab)
    2. [Excel](#excel)
 9. [Writing protocols](#writing-protocols)
-   1. [Tests](#tests)
+   1. [Code completion and error checking](#code-completion-and-error-checking)
+   2. [Name and version](#name-and-version)
+   3. [Values](#values)
+   4. [Defines](#defines)
+   5. [Stimuli](#stimuli)
+   6. [Tests](#tests)
+   7. [Test documentation](#test-documentation)
 10. [Writing experiments](#writing-experiments)
 11. [Terms and abbreviations](#terms-and-abbreviations)
 12. [A short primer on xml files](#a-short-primer-on-xml-files)
@@ -52,6 +58,8 @@ Consequently, running an experiment with LabBench consists of the following step
 
 This overview is intended to introduce you to the philosophy of how LabBench works and its central concepts. The following sections will introduce you to these central concepts, but will not explain how they are implemented in LabBench. For a detailed explanation of how to use these concepts, please refer to later sections in this manual.
 
+[Go to table of contents](#table-of-contents)
+
 ## Protocols
 
 To run an experiment with LabBench you will need to write a protocol in the form of a text file termed a protocol definition file (*.prtx). This file contains a list of all the experimental procedures in the experiment, which in LabBench is referred to as tests.
@@ -62,6 +70,8 @@ When executed in an experiment each test will produce a result that is automatic
 2. A [Evoked responses](evoked_responses.html) test that uses the threshold determined by the first test to set the intensity of the stimuli used to evoke a response to a predefined percentage of the pain threshold.
 
 However, this dependency is not hardcoded in the Evoked responses test. The intensity could come from any test from which an intensity can be calculated. The intensity may also be set from a [Stimulus-response](stimulus_response.html) test as the intensity that evokes a predefined psychophysical response on a visual analog scale (VAS). In the above example this VAS scale may for example be defined with the anchor points of 0cm) no sensation, 4cm) pain threshold, 10cm) pain tolerance threshold.
+
+[Go to table of contents](#table-of-contents)
 
 ## Devices and instruments
 
@@ -75,11 +85,15 @@ To provide access to these instruments, LabBench can communicate with and contro
 
 Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IElectricalStimulator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IElectricalStimulator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimuli it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
 
+[Go to table of contents](#table-of-contents)
+
 ## Experiments
 
 The protocols provices a specification of what is done in an experiment, but in a general way that makes it possible to reuse it in multiple experiments and to share it with the scientific community. Consequently, the protocol can specify which instruments it needs in order to be executed, but it does not specify the experimental setup that provides these instruments. That is instead the purpose of the experiment definition file (*.expx), which defines a single specific experiment that uses this protocol.
 
 The experiment definition file provide to specifications; 1) a specification of the experimental setup, meaning which devices are used and how are they connected to each other, and 2) a device mapping that maps each of these devices to the instruments that are required by the protocol.
+
+[Go to table of contents](#table-of-contents)
 
 ## Logging
 
@@ -87,9 +101,13 @@ Central to the execution of an experiment are well maintained loggs, not only wi
 
 LabBench provides a logging system with three levels; system, experiment, and session. LabBench will record in these logs all it can automatically, such as the execution of tests, change of device settings, etc. It also allow the experimenter to record extra information to the logs in the form of free text notes, which can be used for all the things that LabBench cannot automatically log.
 
+[Go to table of contents](#table-of-contents)
+
 ## Data collection
 
 With LabBench there is no save button, instead all data is saved automatically to a database in a format that is structured from the protocol used in the experiment. When the experiment is completed all the data can be exported to a format that enables the scientist to analyse the data, such as Matlab or Excel.
+
+[Go to table of contents](#table-of-contents)
 
 # Installing and updating
 
@@ -112,6 +130,8 @@ To open a command line console in a specific directory, open Windows Explorer an
 
 ![Opening Command Line from Windows Explorer][wndexp]
 
+[Go to table of contents](#table-of-contents)
+
 ## Tools for writing Protocols and Experiments
 
 To setup experiments you will need to write experiment and protocol definition files, which are text files in a very specific format. LabBench is very strict with this format, any errors in one of these files will cause LabBench to reject the file and give an error.
@@ -125,6 +145,8 @@ To enable this, install the Atom editor by downloading the [installer](https://a
 After this, when you open an experiment or protocol definition file that are based on the [template](https://github.com/Inventors-Way/LabBench.Manual/tree/master/templates "Templates for experiment and protocol definition files") with the Atom editor, you will get code completion and waving lines under errors in the files.
 
 An alternative but far superior tool for editing these files would be to install [Visual Studio](https://visualstudio.microsoft.com/vs/ "Code faster. Work smarter. Create the future with the best-in-class IDE."), which is far more robust in its code completion and error detection than the Atom editor. It is however also rather large and is a download and install of several gigabytes. With visual studio you will get code completion and error detection out of the box.
+
+[Go to table of contents](#table-of-contents)
 
 ## Updating LabBench
 
@@ -142,6 +164,8 @@ From the LabBench version number you can determine whether a new LabBench versio
 * `PatchVersion`: Signifies a backward compatible patch with bugfixes to existing functionality, however, no new functionality has been added to LabBench.
 
 Consequently, when you install a new version of LabBench check if the `MajorVersion` of the currently installed and new version of LabBench are the same. If they are the same you can install the new version without problems. If they are not the same you will most likely need to wait until you have finished the experiments that are currently running using the computer, then export the data, install the new version of LabBench, and then perform a `labconf reset` on the system.
+
+[Go to table of contents](#table-of-contents)
 
 # Setting up LabBench
 
@@ -169,6 +193,8 @@ will set the lowest log level of the system, where [LOG LEVEL] is substituted wi
 
 While it is highly recommended to set the log level to STATUS, it is not recommended to set it to ERROR or DISABLED as this will cause the system to discard information that may be critical for the analysis of your experimental data.
 
+[Go to table of contents](#table-of-contents)
+
 ## Backing up the system
 
 LabBench can backup its internal database to a single external file, which can later be used to restore the system or to clone the setup and data of LabBench to a new computer.
@@ -180,6 +206,8 @@ labconf backup [NAME OF BACKUP FILE]
 ```
 
 which will create a file with the name of [NAME OF BACKUP FILE] in the current directory. We highly recommend that you backup your LabBench installation frequently to safeguard you in the case that your computer malfunctions or is stolen.
+
+[Go to table of contents](#table-of-contents)
 
 ## Restoring the system
 
@@ -193,6 +221,8 @@ labconf restore [NAME OF BACKUP FILE]
 
 where [NAME OF BACKUP FILE] is the name of the backup file that has previously been created with the `labconf backup` command.
 
+[Go to table of contents](#table-of-contents)
+
 ## Resetting the system
 
 If you need to install a new major version of LabBench, or you want to reset the system to its initial state when LabBench is installed on a computer, then this can be performed with the following command:
@@ -205,27 +235,47 @@ which will delete all devices, all experiments, all protocols, and all data from
 
 Please consider very carefully if you need to reset the system before executing this command, as this will irrevocally delete all data without any possibility to restore it. You might want to consider backing up LabBench with the `labconf backup` command before you perform a `labconf reset` of the system.
 
+[Go to table of contents](#table-of-contents)
+
 # Setting up devices
 
 ## Listing all installed devices
 
+[Go to table of contents](#table-of-contents)
+
 ## Installing a device
+
+[Go to table of contents](#table-of-contents)
 
 ## Removing a device
 
+[Go to table of contents](#table-of-contents)
+
 ## Check installed devices
+
+[Go to table of contents](#table-of-contents)
 
 # Setting up an experiment
 
+[Go to table of contents](#table-of-contents)
+
 # Running experiments
 
+[Go to table of contents](#table-of-contents)
+
 # Exporting data
+
+[Go to table of contents](#table-of-contents)
 
 # Data analysis
 
 ## Matlab
 
+[Go to table of contents](#table-of-contents)
+
 ## Excel
+
+[Go to table of contents](#table-of-contents)
 
 # Writing protocols
 
@@ -260,6 +310,8 @@ An example of a protocol definition file is given below:
 
 Please note that the full content of the `<multiple-perception-thresholds>` is not shown in the example. The following sections will go through each part of this protocol definition file to explain how to write them and how they are used to define an experimental protocol.
 
+[Go to table of contents](#table-of-contents)
+
 ## Code completion and error checking
 
 If the text editor supports it, it may provide code completion and error checking if the xml file/protocol definition file specifies what is a valid syntax for the file. This is what is specified with the `xsi:schemaLocation` and `xmlns:xsi`attribute on the `<protocol>` element:
@@ -276,6 +328,8 @@ The `xsi:schemaLocation` specifies the location of the xml schema which contains
 
 If you have installed the Atom editor with the `autocomplete-xml` pacakge or even better Visual Studio, you will then be able to benefit from code completion and error checking.
 
+[Go to table of contents](#table-of-contents)
+
 ## Name and version
 
 Each protocol has a name and a version, which is used to form the ID it will be identified with in LabBench and used to be referenced with from experiment definition files (see [Writing experiments](#writing-experiments)). The name and version of the protocol is specified with the `name` and `version` attributes on the `<protocol>` element:
@@ -289,6 +343,8 @@ Each protocol has a name and a version, which is used to form the ID it will be 
 ```
 
 In LabBench, the ID of a protocol will be formed from its `name` and `version` as `name`-`version`. LabBench can have multiple versions of the same protocol installed, so experiments may use different versions of the same protocol.
+
+[Go to table of contents](#table-of-contents)
 
 ## Values
 
@@ -327,6 +383,8 @@ The example above also uses defines, which are described in the next section [De
 
 Since `C` is used to access the result of the current test it is an error to use `C` as a test ID. It is also an error to use any defines or test dependent variables as a test ID. The easiest way to avoid these errors is to always use the notion `T[NUMBER]` where `[NUMBER]` is substituted with a consequetive number as test IDs (i.e. the first test in the protocol would have `ID="T01"`, second `ID="T02"`, etc.). This convention is garenteed to not conflict with a test dependent variable, and as a protocol writer you will need to ensure that you do not use a test ID as the name of a define.
 
+[Go to table of contents](#table-of-contents)
+
 ## Defines
 
 Tests are specified by setting up their parameters, where in many cases it is desirable to have a mechanism by which the same parameters in multiple tests can be set to the same value. One example is the stimulus duration (Ts) in the stimulus example in the [Values](#values "The type of parameters that LabBench support") section.
@@ -349,6 +407,8 @@ Defines are specified in `defines` element of the protocol definition file:
 ```
 
 Each define is a calculated parameter that can use previously specified defines in the list. In the rest of the procol when the `name` is used in a calculated parameter this name will be substituted with the value of the aritmic expression in the `value` attribute.
+
+[Go to table of contents](#table-of-contents)
 
 ## Stimuli
 
@@ -397,19 +457,29 @@ Time in the stimulus specification is given in mileseconds (ms).
 
 Please note, that even though LabBench will allow you to specify arbitrary complicated stimuli, each device will have limitations on how complex stimuli they can handle. Consequently, if this is exceeded the device used in a test may be incapable of executing a stimulus that has been specified in a protocol.
 
+[Go to table of contents](#table-of-contents)
+
 ### Combined
 
 The `<combined>` stimulus element is used to construct stimuli as the sum of other stimulus elements. The Combined stimulus element can be used within itself, and consequently, Combined stimulus elements can be nested arbitrarely deep. This is not recommended.
+
+[Go to table of contents](#table-of-contents)
 
 ### Pulse
 
 The `<pulse>` stimulus element is used to specify a retangular stimulus that has the intensity `Is` for `Ts` mileseconds.
 
+[Go to table of contents](#table-of-contents)
+
 ### Ramp
 
 The `<ramp>` stimulus element is used to specify a linearly increasing stimulus that increases from 0 to `Is`over `Ts` mileseconds.
 
+[Go to table of contents](#table-of-contents)
+
 ## Tests
+
+[Go to table of contents](#table-of-contents)
 
 ## Test documentation
 
@@ -419,10 +489,18 @@ The `<ramp>` stimulus element is used to specify a linearly increasing stimulus 
   * [Multiple perception thresholds](method_of_limits.html)
   * [Psi Threshold Estimation](psi_method.html)
 
+[Go to table of contents](#table-of-contents)
+
 # Writing experiments
+
+[Go to table of contents](#table-of-contents)
 
 # Terms and abbreviations
 
-[wndexp]: img/WndExplorer.png "Opening Command Line from Windows Explorer"
+[Go to table of contents](#table-of-contents)
 
 # A short primer on xml files
+
+[Go to table of contents](#table-of-contents)
+
+[wndexp]: img/WndExplorer.png "Opening Command Line from Windows Explorer"
