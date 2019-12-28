@@ -329,10 +329,67 @@ Since `C` is used to access the result of the current test it is an error to use
 
 ## Defines
 
-Tests are specified by setting up their parameters, in many cases it is desirable to have a mechanism by which the same parameters in multiple tests can be set to the same value. One example could for example the width (Ts) of stimuli in multiple threshold estimation tests, which was used in the stimulus example in [Values](#values "The type of parameters that LabBench support").
+Tests are specified by setting up their parameters, where in many cases it is desirable to have a mechanism by which the same parameters in multiple tests can be set to the same value. One example is the stimulus duration (Ts) in the stimulus example in the [Values](#values "The type of parameters that LabBench support") section.
+
+Defines are specified in `defines` element of the protocol definition file:
+
+```xml
+<defines>
+  <!-- Stimuli -->
+  <define name="Ts" value="1"/>
+  <!-- Method of Limits -->
+  <define name="Istart" value="0.2"/>
+  <define name="Naverage" value="3"/>
+  <define name="Ndiscard" value="1"/>
+  <define name="Ntest" value="2"/>
+  <define name="Pdecrease" value="0.2"/>
+  <define name="Pmin" value="0.05"/>
+  <define name="Pstep" value="0.2"/>
+</defines>
+```
+
+Each define is a calculated parameter that can use previously specified defines in the list. In the rest of the procol when the `name` is used in a calculated parameter this name will be substituted with the value of the aritmic expression in the `value` attribute.
 
 ## Stimuli
 
+Many tests in LabBench, involves evoking a response with stimuli. To facilitate this, LabBench provides a common way of specifying stimuli, where an example of such a stimuli is given below:
+
+```xml
+<combined>
+  <pulse Is="0.1*C['C01']" Ts="20 + Ts" Tdelay="0"/>
+  <pulse Is="Is" Ts="Ts" Tdelay="20"/>
+</combined>
+```
+
+This was the stimulus that was used as an example in the [Values](#values "The type of parameters that LabBench support") section. This section will explain in more detail how stimuli can be constructed from the different stimulus elements that are provided by LabBench.
+
+LabBench provides the following stimulus elements:
+
+| Element  |Sub-elements  |Attributes      | Description                                            |
+|:--------:|:------------:|:--------------:|:-------------------------------------------------------|
+| [combined](#combined "A stimulus combined from other stimulus elements") | all elements | none | Is used to construct stimuli as a sum of other stimuli |
+| [pulse](#pulse "A rectangular pulse") | none | Is, Ts, Tdelay | A rectangular stimulus |
+| [ramp](#ramp "A linearly increasing stimulus") | none | Is, Ts, Tdelay | A linearly increasing stimulus |
+
+Where a test requires a stimulus as a parameter, any of these elements can be used as the root element. Consequently, if a single rectangular pulse was required instead of the threshold electrotonus in the example above, this could be specified as:
+
+```xml
+<pulse Is="Is" Ts="Ts" Tdelay="20"/>
+```
+
+However, the following would achieve the same result in an albeit more wastefull manner:
+
+```xml
+<combined>
+  <pulse Is="Is" Ts="Ts" Tdelay="20"/>
+</combined>
+```
+
+### Combined
+
+### Pulse
+
+### Ramp
 
 ## Tests
 
@@ -340,7 +397,6 @@ Tests are specified by setting up their parameters, in many cases it is desirabl
 
 * Metatests
   * [Subject information](subject_information.html)
-  * [Subject factors](factors.html)
 * Psychophysics
   * [Multiple perception thresholds](method_of_limits.html)
   * [Psi Threshold Estimation](psi_method.html)
