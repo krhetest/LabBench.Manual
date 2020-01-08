@@ -77,21 +77,21 @@ However, this dependency is not hardcoded in the Evoked responses test. The inte
 
 ## Devices and instruments
 
-To actually run a neuroscience/psychophysical experiment you will need instruments to stimulate the subjects and to record their responses. In the example above, three instruments are required for the [Multiple perception thresholds](method_of_limits.html) test; a button used by the subject to indicate whether the stimuli are painful or not, and 2) an electrical stimulator to create the stimuli.
+To run a neuroscience/psychophysical experiment you will need instruments to stimulate the subjects and to record their responses. In the example above, two instruments are required for the [Multiple perception thresholds](method_of_limits.html) test; a button used by the subject to indicate whether the stimuli are painful or not, and 2) an electrical stimulator to create the stimuli.
 
-To provide access to these instruments, LabBench can communicate with and control Devices. A device is equipment that can implement a number of instrument interfaces. For the example, we will use the LabBenchIO device, which provides the following instrument interface:
+To provide access to these instruments, LabBench can communicate with and control Devices. A device is equipment that can implement several instrument interfaces. For the example, we will use the LabBenchIO device, which provides the following instrument interface:
 
-* **IButton**: Makes it possible for a subject to indicate a threshold by pressing the button. When the subject presses the button the reaction time to the last applied stimulus is also recorded. In the example this interface is used to indicate whether the stimuli are painfull or not.
+* **IButton**: Makes it possible for a subject to indicate a threshold by pressing the button. When the subject presses the button the reaction time to the last applied stimulus is also recorded. In the example this interface is used to indicate whether the stimuli are painful or not.
 * **IElectricalStimulator**: Makes it possible to apply electrical stimuli to a subject.
 * **IScale**: Makes it possible for a subject to rate his or her sensation on a psychophysical scale, such as a visual analog scale, numerical rating scale, or Wong-Baker faces scale. This instrument is not used in the example, but it would have been used instead of the **IButton** interface if a [Stimulus-response](stimulus_response.html) test had been used to establish the stimulus intensity in the [Evoked responses](evoked_responses.html) test.
 
-Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IElectricalStimulator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IElectricalStimulator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimuli it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
+Consequently, **Devices** are actual physical devices that you have in your experimental setup, whereas **Instruments** are the logical grouping of these devices that enables you to for example collect a response or to apply a stimulus to your subjects. In the example two Devices are used for the **IElectricalStimulator** interface; the LabBenchIO device and a Digitimer DS5 stimulator. The LabBenchIO is the one implementing the **IElectricalStimulator** interface, where it generates an analog signal to the DS5 Stimulator. To actually generate correct electrical stimuli, it needs to know about the DS5 stimulator and its transconductance, which is why the DS5 stimulator in the LabBench setup is attached to the LabBenchIO device.
 
 [Go to table of contents](#table-of-contents)
 
 ## Experiments
 
-The protocols provices a specification of what is done in an experiment, but in a general way that makes it possible to reuse it in multiple experiments and to share it with the scientific community. Consequently, the protocol can specify which instruments it needs in order to be executed, but it does not specify the experimental setup that provides these instruments. That is instead the purpose of the experiment definition file (*.expx), which defines a single specific experiment that uses this protocol.
+The protocols provides a specification of what is done in an experiment, but in a general way that makes it possible to reuse it in multiple experiments and to share it with the scientific community. Consequently, the protocol can specify which instruments it needs in order to be executed, but it does not specify the experimental setup that provides these instruments. That is instead the purpose of the experiment definition file (*.expx), which defines a single specific experiment that uses this protocol.
 
 The experiment definition file provide to specifications; 1) a specification of the experimental setup, meaning which devices are used and how are they connected to each other, and 2) a device mapping that maps each of these devices to the instruments that are required by the protocol.
 
@@ -99,9 +99,9 @@ The experiment definition file provide to specifications; 1) a specification of 
 
 ## Logging
 
-Central to the execution of an experiment are well maintained loggs, not only with regard to how the data is saved, but also that notes are taken throughout the experiment on all events that may influence the validity of the data and how it should be interpreted in the later data analysis and publication of the results.
+Central to the execution of an experiment are well maintained logs, not only with regard to how the data is saved, but also that notes are taken throughout the experiment on all events that may influence the validity of the data and how it should be interpreted in the later data analysis and publication of the results.
 
-LabBench provides a logging system with three levels; system, experiment, and session. LabBench will record in these logs all it can automatically, such as the execution of tests, change of device settings, etc. It also allow the experimenter to record extra information to the logs in the form of free text notes, which can be used for all the things that LabBench cannot automatically log.
+LabBench provides a logging system with three levels; system, experiment, and session. LabBench will record in these logs all it can automatically, such as the execution of tests, change of device settings, etc. It also allows the experimenter to record extra information to the logs in the form of free text notes, which can be used for all the things that LabBench cannot automatically log.
 
 [Go to table of contents](#table-of-contents)
 
@@ -142,7 +142,7 @@ While you can use any text editor to write these files, it will be easier to wri
 
 One such editor is the [Atom editor](https://atom.io/ "A hackable text editor for the 21st Century"), which with the [Autocomplete XML Atom Package](https://atom.io/packages/autocomplete-xml "XML tag autocompletion for Atom text editor!") package can provide what is known as code completion for the experiment and protocol definition files.
 
-To enable this, install the Atom editor by downloading the [installer](https://atom.io/download/windows_x64 "Direct download link for Windows") and running it. Once the Atom editor is installed, start the editor and go to File=>Settings. In the Settings panel goto Packages and search for the `autocomplete-xml` package and install it.
+To enable this, install the Atom editor by downloading the [installer](https://atom.io/download/windows_x64 "Direct download link for Windows") and running it. Once the Atom editor is installed, start the editor and go to File=>Settings. In the Settings panel go to Packages and search for the `autocomplete-xml` package and install it.
 
 After this, when you open an experiment or protocol definition file that are based on the [template](https://github.com/Inventors-Way/LabBench.Manual/tree/master/templates "Templates for experiment and protocol definition files") with the Atom editor, you will get code completion and waving lines under errors in the files.
 
@@ -152,20 +152,20 @@ An alternative but far superior tool for editing these files would be to install
 
 ## Updating LabBench
 
-LabBench may be updated by downloading a new installer and installing the new version over the old version of LabBench. This will not touch the installed devices, experiments, or protocols or the data contained within LabBench. However, care must be taken before a new version of LabBench is installed, as the new LabBench may not be compatible with the old version. If it is incompatable it will not be able to read the data from the old version of LabBench, and when you list installed devices, experiments, and protocols it will appear that none are installed and LabBench will display a warning with incompatable data present.
+LabBench may be updated by downloading a new installer and installing the new version over the old version of LabBench. This will not touch the installed devices, experiments, or protocols or the data contained within LabBench. However, care must be taken before a new version of LabBench is installed, as the new LabBench may not be compatible with the old version. If it is incompatible it will not be able to read the data from the old version of LabBench, and when you list installed devices, experiments, and protocols it will appear that none are installed and LabBench will display a warning with incompatible data present.
 
 In that case you can recover from the error in two ways:
 
-1. Purge all the old data with with the `labconf reset` command. Warning this will delete everything in the system, only perform this action if you are abselutely sure that you have exported all data from LabBench and you have no need of the old LabBench setup anymore.
-2. Manually uninstall LabBench, and install an old version of LabBench that is compatable with the data in system. After this you can use the old LabBench installation to export your data, before you reinstall the new version of LabBench, and purge the data with the `labconf reset` command.
+1. Purge all the old data with the `labconf reset` command. Warning this will delete everything in the system, only perform this action if you are absolutely sure that you have exported all data from LabBench and you have no need of the old LabBench setup anymore.
+2. Manually uninstall LabBench, and install an old version of LabBench that is compatible with the data in system. After this you can use the old LabBench installation to export your data, before you reinstall the new version of LabBench, and purge the data with the `labconf reset` command.
 
-From the LabBench version number you can determine whether a new LabBench version will be compatable with the version of LabBench you have currently installed. LabBench uses [semantic versioning](https://semver.org/ "Semantic Versioning 2.0.0") where a version number consists of three numbers seperated by digits: `MajorVersion.MinorVersion.PatchVersion` that has the following definition:
+From the LabBench version number you can determine whether a new LabBench version will be compatible with the version of LabBench you have currently installed. LabBench uses [semantic versioning](https://semver.org/ "Semantic Versioning 2.0.0") where a version number consists of three numbers seperated by digits: `MajorVersion.MinorVersion.PatchVersion` that has the following definition:
 
 * `MajorVersion`: LabBench will be incompatable when the `MajorVersion` number differs between two versions of LabBench.
-* `MinorVersion`: Functionality has been added to LabBench in a backward compatible manner. Data created by a version of LabBench with the same `MajorVersion` but a lower `MinorVersion` will be compatible. However, LabBench is not garanteed to be downgradable, and consequently, data created by a higher `MinorVersion` is not garanteed to be readable by a lower `MinorVersion`.
+* `MinorVersion`: Functionality has been added to LabBench in a backward compatible manner. Data created by a version of LabBench with the same `MajorVersion` but a lower `MinorVersion` will be compatible. However, LabBench is not guaranteed to be down gradable, and consequently, data created by a higher `MinorVersion` is not guaranteed to be readable by a lower `MinorVersion`.
 * `PatchVersion`: Signifies a backward compatible patch with bugfixes to existing functionality, however, no new functionality has been added to LabBench.
 
-Consequently, when you install a new version of LabBench check if the `MajorVersion` of the currently installed and new version of LabBench are the same. If they are the same you can install the new version without problems. If they are not the same you will most likely need to wait until you have finished the experiments that are currently running using the computer, then export the data, install the new version of LabBench, and then perform a `labconf reset` on the system.
+Consequently, when you install a new version of LabBench check if the `MajorVersion` of the currently installed and new version of LabBench are the same. If they are the same, you can install the new version without problems. If they are not the same you will most likely need to wait until you have finished the experiments that are currently running using the computer, then export the data, install the new version of LabBench, and then perform a `labconf reset` on the system.
 
 [Go to table of contents](#table-of-contents)
 
@@ -175,7 +175,7 @@ Consequently, when you install a new version of LabBench check if the `MajorVers
 
 LabBench has three log levels:
 
-1. DEBUG: Extremely detailed information that is mostly relevant to debug and develop the LabBench system. Setting the log level to DEBUG will cause the LabBench database to consume a significant space on the harddisk of the computer.
+1. DEBUG: Extremely detailed information that is mostly relevant to debug and develop the LabBench system. Setting the log level to DEBUG will cause the LabBench database to consume a significant space on the hard disk of the computer.
 2. STATUS: Information that is required in order to analyse and interpret the data from an experimental session correctly.
 3. ERROR: Errors that affect the validity of the results collected in an experimental session.
 
@@ -235,7 +235,7 @@ labconf reset -p "I AM VERY SURE I WANT TO DO THIS"
 
 which will delete all devices, all experiments, all protocols, and all data from LabBench. The `-p` option is not required, if you do not specify this option on the command line the program will prompt you to type in the sentence `I AM VERY SURE I WANT TO DO THIS` before it will reset the system.
 
-Please consider very carefully if you need to reset the system before executing this command, as this will irrevocally delete all data without any possibility to restore it. You might want to consider backing up LabBench with the `labconf backup` command before you perform a `labconf reset` of the system.
+Please consider very carefully if you need to reset the system before executing this command, as this will irrevocably delete all data without any possibility to restore it. You might want to consider backing up LabBench with the `labconf backup` command before you perform a `labconf reset` of the system.
 
 [Go to table of contents](#table-of-contents)
 
@@ -269,37 +269,37 @@ Running an experimental session with LabBench Runner consists of the following s
 
 * Going through the start-up wizard dialog, where you will:
   * Select the experiment you want to perform
-  * Check that all the required instuments are present and correctly configured.
-  * Create a new subject, or choose an existing subject.
+  * Check that all the required instruments are present and correctly configured.
+  * Create a new subject or choose an existing subject.
 * When the start-up wizard has completed; LabBench Runner will start:
   * Executing each test in the protocol, where:
     * Starting the test.
     * Using the Test Area to execute and monitor the test
     * When the test completes, accept or reject the recorded data
 
-The list above provides a high level overview of how experimental sessions are performed with the LabBench Runner program, the remaining of this guide will explain in detail how each of these steps are performed.
+The list above provides a high-level overview of how experimental sessions are performed with the LabBench Runner program, the remaining of this guide will explain in detail how each of these steps are performed.
 
 [Go to table of contents](#table-of-contents)
 
 ## Starting an experimental session
 
-The startup wizard goes through the setup of an experimental session. The first choice is which experiment you wish to run, where it will present you the screen below for selecting an experiment that is currently installed in the LabBench system.
+The start-up wizard goes through the setup of an experimental session. The first choice is which experiment you wish to run, where it will present you the screen below for selecting an experiment that is currently installed in the LabBench system.
 
 ![Selecting an experiment][step01]
 
-The next step is to check that all the instruments required by the experiment is connected to the computer and is working. This is done in the second step of the startup wizard, which is shown below:
+The next step is to check that all the instruments required by the experiment is connected to the computer and is working. This is done in the second step of the start-up wizard, which is shown below:
 
 ![Checking the experimental setup][step02]
 
-The third and final step of the start-up wizard is to either create a new subject or to select an allrady existing subject, which is done in the screen shown below:
+The third and final step of the start-up wizard is to either create a new subject or to select an already existing subject, which is done in the screen shown below:
 
 ![Creating or selecting an existing subject][step03]
 
 A new subject is created by writing a previously unused subject ID in the Subject input box. To use a previously created subject, then select an subject from the list below the Subject input box.
 
-If you enter an allready existing subject ID in the Subject input box, then this subject will be selected in the list of existing subjects and a new subject will not be created. Consequently, there can be one and only one subject with a given Subject ID in the system. 
+If you enter an already existing subject ID in the Subject input box, then this subject will be selected in the list of existing subjects and a new subject will not be created. Consequently, there can be one and only one subject with a given Subject ID in the system. 
 
-The Subject input box has autocomplete, so an existing subject can be selected by starting to type his or hers subject ID and then selecting the subject from the ensuing list of matches.
+The Subject input box has auto-complete, so an existing subject can be selected by starting to type his or hers subject ID and then selecting the subject from the ensuing list of matches.
 
 [step01]: img/wizard-step01.png "Start-Up: Selecting an experiment"
 [step02]: img/wizard-step02.png "Start-Up: Checking the experimental setup"
@@ -323,7 +323,7 @@ The Subject input box has autocomplete, so an existing subject can be selected b
 
 # Writing protocols
 
-Writing a protocol consists of writing a protocol definition file (*.prtx) which is a text file in an e**x**tensible **m**arkup **l**anguage (xml) format. If you are unfamiliar with xml files, you are recommended to read the sectoin [A short primer on xml files](#a-short-primer-on-xml-files) before reading the rest of this section.
+Writing a protocol consists of writing a protocol definition file (*.prtx) which is a text file in an e**x**tensible **m**arkup **l**anguage (xml) format. If you are unfamiliar with xml files, you are recommended to read the section [A short primer on xml files](#a-short-primer-on-xml-files) before reading the rest of this section.
 
 An example of a protocol definition file is given below:
 
@@ -392,22 +392,22 @@ In LabBench, the ID of a protocol will be formed from its `name` and `version` a
 
 ## Values
 
-For the protocol and its tests there are parameters that needs to be set in order to specify a protocol. Two parameters have allready been described; the `name` and `version` of the protocol. All parameters have a type which defines which values that are valid for the parameter and how it is determined. In the case of the `name` and `version` parameters they are both text parameters. LabBench has the following types of parameters:
+For the protocol and its tests there are parameters that needs to be set in order to specify a protocol. Two parameters have already been described; the `name` and `version` of the protocol. All parameters have a type which defines which values that are valid for the parameter and how it is determined. In the case of the `name` and `version` parameters they are both text parameters. LabBench has the following types of parameters:
 
 | Type       |Description                                                              |
 |:----------:|-------------------------------------------------------------------------|
 | Text       |Can contain text                                                         |
 | Number     |Any number, for some parameters it may be required to be an integer      |
-| Enum       |A set of predefined values are allowed (e.g. color = {RED, GREEN, BLUE}) |
-| Calculated |The value of the parameter is calculated from an arithmic expression     |
+| Enum       |A set of predefined values are allowed (e.g. colour = {RED, GREEN, BLUE}) |
+| Calculated |The value of the parameter is calculated from an arithmetic expression     |
 
-The Calculated type is what allow tests in LabBench to depend and be configured from the results of other tests, as depending on parameter the calculated parameter may have access to defines in the protocol, previous test results, and the current test result. For example a calculated parameter may be defined as:
+The Calculated type is what allow tests in LabBench to depend and be configured from the results of other tests, as depending on parameter the calculated parameter may have access to defines in the protocol, previous test results, and the current test result. For example, a calculated parameter may be defined as:
 
 ```xml
 Istart="0.9 * T1['C01']"
 ```
 
-which will set the `Istart` parameter to 0.9 of the estimated threshold of the stimulus `C01` from the result of the test with `ID="T1"`. That the threshold for the `C01` was accessed with the `T1['C01']` notation was depending on the type of test result. Each type test result offers different results, and as a consequence different methods and notations for accessing their results. Please refer to  [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover the notations and methods for accessing the results of a test.
+which will set the `Istart` parameter to 0.9 of the estimated threshold of the stimulus `C01` from the result of the test with `ID="T1"`. That the threshold for the `C01` was accessed with the `T1['C01']` notation was depending on the type of test result. Each type test result offers different results, and as a consequence different methods and notations for accessing their results. Please refer to [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover the notations and methods for accessing the results of a test.
 
 The result of the currently running test is accessed with `C`, for example in a threshold estimation with threshold electrotonus the electrical stimulus may be constructed as:
 
@@ -425,7 +425,7 @@ which will construct the stimuli as the summation of two rectangular stimuli:
 
 The example above also uses defines, which are described in the next section [Defines](#defines "A mechanism for supplying the same value to multiple parameters") and a test dependent variable `Is` that is used to adjust the intensity of the stimulus so the test can adjust this variable and in this process estimate the threshold for the stimulus. Please refer to  [Test documentation](#test-documentation "Documentation for each type of test available in LabBench") to discover which test dependent variables that are available in each calculated parameter for a test.
 
-Since `C` is used to access the result of the current test it is an error to use `C` as a test ID. It is also an error to use any defines or test dependent variables as a test ID. The easiest way to avoid these errors is to always use the notion `T[NUMBER]` where `[NUMBER]` is substituted with a consequetive number as test IDs (i.e. the first test in the protocol would have `ID="T01"`, second `ID="T02"`, etc.). This convention is garenteed to not conflict with a test dependent variable, and as a protocol writer you will need to ensure that you do not use a test ID as the name of a define.
+Since `C` is used to access the result of the current test it is an error to use `C` as a test ID. It is also an error to use any defines or test dependent variables as a test ID. The easiest way to avoid these errors is to always use the notion `T[NUMBER]` where `[NUMBER]` is substituted with a consecutive number as test IDs (i.e. the first test in the protocol would have `ID="T01"`, second `ID="T02"`, etc.). This convention is guaranteed to not conflict with a test dependent variable, and as a protocol writer you will need to ensure that you do not use a test ID as the name of a define.
 
 [Go to table of contents](#table-of-contents)
 
@@ -450,13 +450,13 @@ Defines are specified in `defines` element of the protocol definition file:
 </defines>
 ```
 
-Each define is a calculated parameter that can use previously specified defines in the list. In the rest of the procol when the `name` is used in a calculated parameter this name will be substituted with the value of the aritmic expression in the `value` attribute.
+Each define is a calculated parameter that can use previously specified defines in the list. In the rest of the protocol when the `name` is used in a calculated parameter this name will be substituted with the value of the arithmetic expression in the `value` attribute.
 
 [Go to table of contents](#table-of-contents)
 
 ## Stimuli
 
-Many tests in LabBench, involves evoking a response with stimuli. To facilitate this, LabBench provides a common way of specifying stimuli, where an example of such a stimuli is given below:
+Many tests in LabBench, involves evoking a response with stimuli. To facilitate this, LabBench provides a common way of specifying stimuli, where an example of such a stimulus is given below:
 
 ```xml
 <combined>
@@ -497,7 +497,7 @@ There is a set of stimulus parameters that always have the same meaning:
 |Ts       |calculated|The duration of the stimulus|
 |Tdelay   |calculated|Delay from the onset of the stimulus with respect to time zero|
 
-Stimulus elements may define additional parameters that are specific to them. Time in the stimulus specification is given in mileseconds (ms).
+Stimulus elements may define additional parameters that are specific to them. Time in the stimulus specification is given in milliseconds (ms).
 
 Please note, that even though LabBench will allow you to specify arbitrary complicated stimuli by using `<combined>` stimulus elements, each device will have limitations on how complex stimuli they can handle. Consequently, if this is exceeded the device used in a test may be incapable of executing a stimulus that has been specified in a protocol.
 
@@ -505,25 +505,25 @@ Please note, that even though LabBench will allow you to specify arbitrary compl
 
 ### Combined
 
-The `<combined>` stimulus element is used to construct stimuli as the sum of other stimulus elements. The Combined stimulus element can be used within itself, and consequently, Combined stimulus elements can be nested arbitrarely deep. This is not recommended.
+The `<combined>` stimulus element is used to construct stimuli as the sum of other stimulus elements. The Combined stimulus element can be used within itself, and consequently, Combined stimulus elements can be nested arbitrarily deep. This is not recommended.
 
 [Go to table of contents](#table-of-contents)
 
 ### Pulse
 
-The `<pulse>` stimulus element is used to specify a retangular stimulus that has the intensity `Is` for `Ts` mileseconds.
+The `<pulse>` stimulus element is used to specify a rectangular stimulus that has the intensity `Is` for `Ts` milliseconds.
 
 [Go to table of contents](#table-of-contents)
 
 ### Ramp
 
-The `<ramp>` stimulus element is used to specify a linearly increasing stimulus that increases from 0 to `Is`over `Ts` mileseconds.
+The `<ramp>` stimulus element is used to specify a linearly increasing stimulus that increases from 0 to `Is`over `Ts` milliseconds.
 
 [Go to table of contents](#table-of-contents)
 
 ## Tests
 
-Tests are the cornerstone of LabBench and are the units from which protocols are constructed. Each test is defined by parameters that are common and which has to be specified for all tests regardless of their type, and parameters that are specific for each type of tests.
+Tests are the cornerstone of LabBench and are the units from which protocols are constructed. Each test is defined by parameters that are common and which must be specified for all tests regardless of their type, and parameters that are specific for each type of tests.
 
 Tests are specified in the `<tests>` element of the protocol definition file, below there is an example of a `<tests>` element:
 
@@ -574,14 +574,14 @@ Tests are specified in the `<tests>` element of the protocol definition file, be
 
 where the second test has been expanded to show its full content in the example above (please note that the content of the first test has been left out, indicated with `...` for brevity).
 
-All tests has the following common parameters:
+All tests have the following common parameters:
 
 * `ID="[ID OF THE TEST]"`: A unique ID for the test
 * `name="[Human readable name of the test]`: A human readable name that is used in the Protocol View in LabBench Runner.
 * `<update-rate>`: the update rate by which the test is updated by LabBench Runner.
 * `<dependencies>`: which tests the test is dependent on.
 
-In the example above, parameters such as the `response-algorithm` attribute and `<channel>` element are specific to the `<multiple-perception-thresholds>` test. An explation of their function is found in the documentation for the [Multiple perception thresholds](method_of_limits.html "A test that estimates multiple perception thresholds with method of limits") test.
+In the example above, parameters such as the `response-algorithm` attribute and `<channel>` element are specific to the `<multiple-perception-thresholds>` test. An explanation of their function is found in the documentation for the [Multiple perception thresholds](method_of_limits.html "A test that estimates multiple perception thresholds with method of limits") test.
 
 [Go to table of contents](#table-of-contents)
 
