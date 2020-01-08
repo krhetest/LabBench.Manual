@@ -53,20 +53,19 @@ LabBench takes a different approach, as LabBench only provide adaptability and f
 
 Consequently, running an experiment with LabBench consists of the following steps:
 
-1. Defining a protocol by planning all intended experimental procedures and documenting them in a [protocol definition file](#writing-protocols).
-2. Deciding on which instruments and how they will work together to run this protocol. This is then documented in an [experiment definition file](#writing-experiments).
-3. Using [LabBench to execute](#running-experiments) this experiment definition file in a series of sessions in the experiment.
-4. [Exporting](#exporting-data), analyzing and publishing the data obtained in the experiment.
+1. Defining a protocol and experiment, by planning all intended experimental procedures and documenting them in a protocol.
+2. Using LabBench to execute this protocol in a series of sessions in the experiment.
+3. Exporting, analysing and publishing the data obtained in the experiment.
 
-This overview is intended to introduce you to the philosophy of how LabBench works and its central concepts. The following sections will introduce you to these central concepts but will not explain how they are implemented in LabBench. For a detailed explanation of how to use these concepts, please refer to later sections in this manual.
+This overview is intended to introduce you to the philosophy of how LabBench works and its central concepts. The following sections will introduce you to these central concepts, but will not explain how they are implemented in LabBench. For a detailed explanation of how to use these concepts, please refer to later sections in this manual.
 
 [Go to table of contents](#table-of-contents)
 
 ## Protocols
 
-To run an experiment with LabBench you will need to write a protocol in the form of a text file, which is termed a protocol definition file (*.prtx). This file contains a list of all the experimental procedures in the experiment that in LabBench are referred to as tests.
+To run an experiment with LabBench you will need to write a protocol in the form of a text file termed a protocol definition file (*.prtx). This file contains a list of all the experimental procedures in the experiment, which in LabBench is referred to as tests.
 
-When executed in an experiment each test will produce a result that is automatically saved by LabBench when the test has been completed and accepted by the experimenter. A test can also use one or more results from previously executed tests in order to automatically setup the parameters from the test. For example, in an experiment where evoked EEG potentials are recorded you may wish to set the intensity of the stimuli that evokes the EEG potentials to a percentage of the pain thresholds. In LabBench this may be accomplished with a protocol containing two tests:
+When executed in an experiment each test will produce a result that is automatically saved by LabBench when the test has been completed and accepted by the experimentor. A test can also use one or more results from previously executed tests in order to automatically setup the parameters from the test. For example, in an experiment where evoked EEG potentials are recorded you may wish to set the intensity of the stimuli that evokes the EEG potentials to a percentage of the pain thresholds. In LabBench this may be accomplished with a protocol containing two tests:
 
 1. A [Multiple perception thresholds](method_of_limits.html) test that estimates the pain threshold.
 2. A [Evoked responses](evoked_responses.html) test that uses the threshold determined by the first test to set the intensity of the stimuli used to evoke a response to a predefined percentage of the pain threshold.
