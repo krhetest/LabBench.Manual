@@ -27,10 +27,10 @@ Please note that all the values given in the example description above are not f
 
 The Multiple Perception test needs the following instruments to be defined in the expriment definition file (*.expx) for the experiment:
 
-| Name |  Interface | Usage |
-|----|------------|-------|
-|Button|IButton|Is used for the subject to indicate whether he or she can feel the stimulation|
-|Stimulator|IAnalogStimulator|Is used for delivering the stimuli to subject|
+| Name      |  Interface        | Usage |
+|-----------|-------------------|-------|
+|Button     | IButton           |Is used for the subject to indicate whether he or she can feel the stimulation|
+|Stimulator | IAnalogStimulator |Is used for delivering the stimuli to subject|
 
 In the xml snippet below it is illustrated how these instruments can be defined in experiment definition file (*.expx) for all Multiple Perception Thresholds tests in a protocol:
 
