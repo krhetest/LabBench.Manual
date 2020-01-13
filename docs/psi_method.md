@@ -2,6 +2,8 @@
 
 ## Description
 
+[Back to index](index.html)
+
 ## Required instruments
 
 The Thrshold Estimation test needs the following instruments to be defined in the expriment definition file (*.expx) for the experiment:
@@ -12,6 +14,8 @@ The Thrshold Estimation test needs the following instruments to be defined in th
 |Stimulator | IAnalogStimulator |Is used for delivering the stimuli to subject|
 
 In the xml snippet below it is illustrated how these instruments can be defined in experiment definition file (*.expx) for all Threshold Estimation tests in a protocol:
+
+[Back to index](index.html)
 
 ## Estimation Algorithms
 
@@ -52,4 +56,8 @@ In the xml snippet below it is illustrated how these instruments can be defined 
 | stop-criterion | Enum (trials, reversals) | If set to trials the test will stop after a set number of stimulations, regardless of whether a threshold estimate has been achieved or not. If set to reversals it will terminate after a set number of reversals that the threshold has been reached and not reached. |
 | stop-rule | integer | Number of stimulations (stop-criterion = trials) or reversals (stop-criterion = reversals) when the test will terminate |
 
+[Back to index](index.html)
+
 ### Psi Estimation Algorithm
+
+[Back to index](index.html)
