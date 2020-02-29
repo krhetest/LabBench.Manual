@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<experiment xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xsi:schemaLocation="http://labbench.io experiment.xsd"
+            name="Template Experiment"
+            version="1.0.0"
+            protocol="template-1.0.0">
+  <description>
+    # Simple Threshold Estimation
+  </description>
+  <experimental-setup>
+    <description>
+      Here there should be a description of how to setup the experiment
+    </description>
+    <devices>
+      <device id="dev" type="labench-io" serial-number="2">
+        <attached-equipment>
+          <ds5 name="Stimulator" transconductance="1mA_1V" />
+        </attached-equipment>
+      </device>
+    </devices>    
+    <device-mapping>
+      <device-assignment test-type="psychophysics-multiple-perception-thresholds" instrument-name="Button" device-id="dev" />
+      <device-assignment test-type="psychophysics-multiple-perception-thresholds" instrument-name="Stimulator" device-id="dev" />
+      <device-assignment test-type="psychophysics-threshold-estimation" instrument-name="Button" device-id="dev" />
+      <device-assignment test-type="psychophysics-threshold-estimation" instrument-name="Stimulator" device-id="dev" />
+    </device-mapping>
+  </experimental-setup>
+</experiment>

@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<protocol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://labbench.io protocol.xsd"
+  name="Protocol Template"
+  version="1.0.0">
+  <description>
+
+  </description>
+  <defines>
+    <define name="Imult" value="3"/>
+    <define name="Ts" value="1"/>
+    <define name="trials" value="5"/>
+  </defines>
+  <tests>
+    <threshold-estimation ID="PT" name="Perception Threshold">
+      <update-rate-deterministic value="2000" />
+      <dependencies />
+      <yes-no-task />
+
+      <channels>
+        <channel ID="C01"
+                 channel-type="single-sample"
+                 trigger="1"
+                 channel="0"
+                 name="Rect"
+                 Imax="10">
+          <up-down-method down-rule="3"
+                          up-rule="1"
+                          max-intensity="1"
+                          min-intensity="0"
+                          skip-rule="0"
+                          start-intensity="0.0025"
+                          step-size-up="0.25"
+                          step-size-down="0.25"
+                          step-size-type="relative"
+                          terminate-on-limit-reached="true"
+                          max-step-size-reduction="0.1"
+                          step-size-reduction="0.5"
+                          stop-criterion="reversals"
+                          stop-rule="2">
+            <quick alpha="0.5" beta="1" lambda="0.02" gamma="0.0" />
+          </up-down-method>
+          <pulse Is="Is" Ts="1" Tdelay="0" />
+        </channel>
+      </channels>
+    </threshold-estimation>
+
+    <threshold-estimation ID="MEM" name="Properties">
+      <update-rate-deterministic value="2000" />
+      <dependencies>
+      </dependencies>
+      <yes-no-task />
+
+      <channels>
+        <channel ID="RECT10"
+                 channel-type="contineous"
+                 trigger="1"
+                 channel="0"
+                 name="Rect (1.0ms)"
+                 Imax="10">
+          <channel-dependencies>
+          </channel-dependencies>
+          <psi-method number-of-trials="trials">
+            <quick alpha="0.5" beta="1" lambda="0.02" gamma="0.0" />
+            <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+            <alpha type="linspace" x0="0.25" x1="1" n="100" />
+            <intensity type="linspace" x0="0.25" x1="1" n="100" />
+          </psi-method>
+          <pulse Is="Is" Ts="1" Tdelay="0" />
+        </channel>
+
+        <channel ID="TED20"
+                 channel-type="single-sample"
+                 trigger="1"
+                 channel="0"
+                 name="TE (Dep: 20ms)"
+                 Imax="10">
+          <channel-dependencies>
+            <dependency ID="RECT10"/>
+          </channel-dependencies>
+          <psi-method number-of-trials="trials">
+            <quick alpha="0.5" beta="1" lambda="0.02" gamma="0.0" />
+            <beta type="linspace" base="10" x0="-1.2041" x1="1.2041" n="20"/>
+            <alpha type="linspace" x0="0.25" x1="1" n="100" />
+            <intensity type="linspace" x0="0.25" x1="1" n="100" />
+          </psi-method>
+          <combined>
+            <pulse Is="Is" Ts="1" Tdelay="20" />
+            <pulse Is="0.2 * C['RECT10']" Ts="21" Tdelay="0" />
+          </combined>
+        </channel>
+      </channels>
+    </threshold-estimation>
+  </tests>
+</protocol>

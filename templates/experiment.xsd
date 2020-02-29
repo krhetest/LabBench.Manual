@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="experiment" nillable="true" type="Experiment" />
+  <xs:complexType name="Experiment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="experimental-setup" type="ExperimentalSetup" />
+    </xs:sequence>
+    <xs:attribute name="protocol" type="xs:string" />
+    <xs:attribute name="name" type="xs:string" />
+    <xs:attribute name="version" type="xs:string" />
+  </xs:complexType>
+  <xs:complexType name="ExperimentalSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="description" type="xs:string" />
+      <xs:element minOccurs="0" maxOccurs="1" name="devices" type="ArrayOfDeviceSetup" />
+      <xs:element minOccurs="0" maxOccurs="1" name="device-mapping" type="ArrayOfDeviceReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDeviceSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="device" nillable="true" type="DeviceSetup" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeviceSetup">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="attached-equipment" type="ArrayOfDS5" />
+    </xs:sequence>
+    <xs:attribute name="id" type="xs:string" />
+    <xs:attribute name="type" type="DeviceType" use="required" />
+    <xs:attribute name="serial-number" type="xs:unsignedInt" use="required" />
+  </xs:complexType>
+  <xs:complexType name="ArrayOfDS5">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ds5" nillable="true" type="DS5" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DS5">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Stimulator">
+        <xs:attribute name="transconductance" type="Transconductance" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Stimulator" abstract="true">
+    <xs:complexContent mixed="false">
+      <xs:extension base="Equipment" />
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="Equipment" abstract="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="instruction" type="xs:string" />
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="Transconductance">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="1mA_1V" />
+      <xs:enumeration value="2.5mA_1V" />
+      <xs:enumeration value="5mA_1V" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="DeviceType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="labench-io" />
+      <xs:enumeration value="labbench-scale" />
+      <xs:enumeration value="labbench-button" />
+      <xs:enumeration value="invalid-device" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="ArrayOfDeviceReference">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="device-assignment" nillable="true" type="DeviceReference" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeviceReference">
+    <xs:attribute name="device-id" type="xs:string" />
+    <xs:attribute name="test-type" type="TestType" use="required" />
+    <xs:attribute name="test-id" type="xs:string" />
+    <xs:attribute name="instrument-name" type="xs:string" />
+  </xs:complexType>
+  <xs:simpleType name="TestType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="psychophysics-multiple-perception-thresholds" />
+      <xs:enumeration value="psychophysics-threshold-estimation" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
