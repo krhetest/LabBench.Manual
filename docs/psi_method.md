@@ -1,6 +1,7 @@
 # Threshold Estimation
 
 ## Description
+The threshold estimation tests makes it possible to estimate psychometric functions with adaptive methods. The purpose and motivation for adaptive methods is to increase the effectiveness by which pasychometric functions are estimated, so this process becomes faster and ultimately results in better estimates as the effort required by the subjects becomes less. They achieve that by attempting to maximize the information gained from each presentation of a stimulus to the subject.
 
 [Back to index](index.html)
 
